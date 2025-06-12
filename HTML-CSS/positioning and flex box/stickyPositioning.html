@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CSS Sticky Positioning</title>
+    <style>
+      /* Basic page styling */
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      /* Sticky header */
+      header {
+        position: sticky; /* Sticky positioning */
+        top: 0; /* Stick to the top of the viewport when scrolled */
+        background-color: #4caf50;
+        color: white;
+        padding: 15px 20px;
+        font-size: 1.5rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        z-index: 1000; /* Ensure header stays on top */
+      }
+
+      /* Main content styling */
+      .content {
+        padding: 20px;
+      }
+
+      /* Some spacing between paragraphs */
+      p {
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sticky header -->
+    <header>Sticky Header (sticks when you scroll down)</header>
+
+    <!-- Main content with enough text to enable scrolling -->
+    <div class="content">
+      <p>
+        Scroll down to see how the header sticks to the top of the viewport when
+        it reaches it.
+      </p>
+      <p>
+        Sticky positioning is a hybrid of relative and fixed positioning. The
+        element behaves like relative until it reaches a defined threshold (top:
+        0 here), then it becomes fixed.
+      </p>
+      <p>
+        This is useful for navigation menus or section headers that you want
+        visible as you scroll but only after they reach the top.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet
+        sapien eget tortor suscipit suscipit. Curabitur at elementum erat, in
+        imperdiet sem.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet
+        sapien eget tortor suscipit suscipit. Curabitur at elementum erat, in
+        imperdiet sem.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet
+        sapien eget tortor suscipit suscipit. Curabitur at elementum erat, in
+        imperdiet sem.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet
+        sapien eget tortor suscipit suscipit. Curabitur at elementum erat, in
+        imperdiet sem.
+      </p>
+    </div>
+  </body>
+</html>

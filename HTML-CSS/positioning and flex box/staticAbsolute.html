@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Static vs Absolute Positioning</title>
+    <style>
+      /* Container with relative positioning 
+       - establishes a positioning context for absolutely positioned child elements */
+      .container {
+        position: relative; /* IMPORTANT for absolute positioning context */
+        width: 500px;
+        height: 300px;
+        border: 2px solid #333;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fafafa;
+      }
+
+      /* Static positioning (default) */
+      .static-box {
+        position: static; /* Default positioning */
+        /* top, right, bottom, left DO NOT affect this */
+        background-color: #d0e7ff;
+        padding: 15px;
+        margin-bottom: 15px; /* Spacing below */
+        border: 1px solid #2a6fdb;
+        font-family: Arial, sans-serif;
+      }
+
+      /* Absolute positioning */
+      .absolute-box {
+        position: absolute; /* Removed from normal flow */
+        top: 30px; /* 30px from the top of the nearest positioned ancestor */
+        left: 250px; /* 250px from the left of the nearest positioned ancestor */
+        width: 200px;
+        background-color: #ffcccb;
+        padding: 15px;
+        border: 1px solid #db2a2a;
+        font-family: Arial, sans-serif;
+        /* This element overlaps and does not affect other elements' layout */
+      }
+
+      /* Extra explanation box */
+      .explanation {
+        max-width: 600px;
+        margin: 20px auto;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.5;
+        background-color: #e9ecef;
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="text-align: center">CSS Positioning: Static vs Absolute</h1>
+
+    <div class="container">
+      <!-- Static box: normal document flow -->
+      <div class="static-box">
+        <strong>Static Positioning (default):</strong><br />
+        This box is positioned statically, which means it flows normally within
+        the document. It respects margins, paddings, and appears in the order it
+        is written in HTML. The <code>top</code>, <code>left</code>,
+        <code>right</code>, and <code>bottom</code> properties have no effect
+        here.
+      </div>
+
+      <!-- Absolute box: positioned relative to container -->
+      <div class="absolute-box">
+        <strong>Absolute Positioning:</strong><br />
+        This box is positioned absolutely relative to the nearest ancestor with
+        positioning (here, the container). It is removed from the normal
+        document flow, so it overlaps other content without affecting their
+        position. Using <code>top: 30px</code> and <code>left: 250px</code>, it
+        is placed exactly within the container.
+      </div>
+    </div>
+
+    <div class="explanation">
+      <h2>Key Concepts Explained:</h2>
+      <ul>
+        <li>
+          <strong>Static Positioning:</strong> Default for all HTML elements;
+          element appears in normal flow; positioning properties like
+          <code>top</code>, <code>left</code> have no effect.
+        </li>
+        <li>
+          <strong>Absolute Positioning:</strong> Element is removed from
+          document flow; positioned relative to nearest ancestor with
+          <code>position: relative|absolute|fixed</code>.
+        </li>
+        <li>
+          <strong>Positioning Context:</strong> An ancestor with
+          <code>position</code> other than <code>static</code> creates a
+          positioning context. Without it, absolutely positioned elements are
+          positioned relative to the document body.
+        </li>
+        <li>
+          <strong>Effect on Layout:</strong> Static elements take up space and
+          push other elements; absolute elements overlap others and take no
+          space.
+        </li>
+        <li>
+          <strong>Stacking:</strong> Absolutely positioned elements can overlap
+          static elements; use <code>z-index</code> to control layering.
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
