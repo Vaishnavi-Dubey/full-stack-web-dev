@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Web Design - Mobile First</title>
+    <style>
+      /* ===============================
+       BASE STYLES (Mobile First)
+       =============================== */
+
+      /* Reset box model */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Body base styling */
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+        padding: 20px;
+      }
+
+      /* Header */
+      header {
+        text-align: center;
+        padding: 20px 0;
+        background-color: #6200ea;
+        color: white;
+      }
+
+      /* Main container layout (column layout on mobile) */
+      .container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .box {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      /* Typography for heading */
+      h1 {
+        font-size: 24px;
+      }
+
+      /* Typography for content */
+      p {
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      /* ===============================
+       MEDIA QUERY FOR TABLETS (min-width: 600px)
+       =============================== */
+      @media screen and (min-width: 600px) {
+        .container {
+          flex-direction: row; /* Switch to horizontal layout */
+          justify-content: space-between;
+        }
+
+        .box {
+          flex: 1;
+        }
+
+        h1 {
+          font-size: 28px;
+        }
+
+        p {
+          font-size: 18px;
+        }
+      }
+
+      /* ===============================
+       MEDIA QUERY FOR DESKTOP (min-width: 992px)
+       =============================== */
+      @media screen and (min-width: 992px) {
+        body {
+          padding: 40px;
+        }
+
+        header {
+          font-size: 32px;
+          padding: 30px 0;
+        }
+
+        .box {
+          padding: 30px;
+        }
+
+        h1 {
+          font-size: 32px;
+        }
+
+        p {
+          font-size: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header>
+      <h1>Responsive Design: Mobile First</h1>
+    </header>
+
+    <!-- Content Section -->
+    <div class="container">
+      <div class="box">
+        <h2>Box 1</h2>
+        <p>
+          This is the first content box. It stacks on mobile and aligns
+          horizontally on larger screens.
+        </p>
+      </div>
+      <div class="box">
+        <h2>Box 2</h2>
+        <p>
+          This is the second content box. Responsive layouts improve user
+          experience on all devices.
+        </p>
+      </div>
+      <div class="box">
+        <h2>Box 3</h2>
+        <p>
+          This is the third content box. Media queries control how styles adapt
+          to screen sizes.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
