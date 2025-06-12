@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Group Selector Example</title>
+
+    <style>
+      /* Group Selector: Apply same style to multiple elements (h1, h2, p) */
+      h1,
+      h2,
+      p {
+        font-family: Arial, sans-serif;
+        color: darkslateblue;
+        margin: 10px 0;
+      }
+
+      /* Group selector with different tags sharing common styling */
+      ul,
+      ol {
+        padding-left: 20px;
+        background-color: #f0f0f0;
+      }
+
+      /* Another example: grouping selectors by class */
+      .box1,
+      .box2 {
+        border: 2px solid gray;
+        padding: 10px;
+        margin: 5px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Main Heading</h1>
+    <h2>Subheading</h2>
+    <p>
+      This paragraph, like the headings, uses the same group-styled font and
+      color.
+    </p>
+
+    <ul>
+      <li>Grouped Unordered List</li>
+      <li>Another item</li>
+    </ul>
+
+    <ol>
+      <li>Grouped Ordered List</li>
+      <li>Another item</li>
+    </ol>
+
+    <div class="box1">This is Box 1</div>
+    <div class="box2">This is Box 2</div>
+  </body>
+</html>

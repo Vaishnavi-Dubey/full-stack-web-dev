@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Class Selector Example</title>
+
+    <style>
+      /* Class selector: Selects all elements with the class 'highlight' */
+      .highlight {
+        background-color: yellow;
+        font-weight: bold;
+        padding: 5px;
+      }
+
+      /* Another class selector for styling buttons */
+      .btn {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      /* A class used for warning messages */
+      .warning {
+        color: red;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>CSS Class Selector Example</h1>
+    <hr />
+
+    <p>
+      This is a <span class="highlight">highlighted</span> word inside a
+      sentence.
+    </p>
+
+    <p class="warning">This is a warning message using a class.</p>
+
+    <button class="btn">Click Me</button>
+
+    <p class="highlight">This entire paragraph is highlighted using a class.</p>
+  </body>
+</html>

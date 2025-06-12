@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Specificity Example</title>
+
+    <style>
+      /* Universal selector - Lowest specificity (0, 0, 0, 0) */
+      * {
+        color: gray;
+      }
+
+      /* Type selector - Specificity (0, 0, 0, 1) */
+      p {
+        color: blue;
+      }
+
+      /* Class selector - Specificity (0, 0, 1, 0) */
+      .highlight {
+        color: green;
+      }
+
+      /* ID selector - Specificity (0, 1, 0, 0) */
+      #important {
+        color: red;
+      }
+
+      /* Inline style will override all others - Specificity (1, 0, 0, 0) */
+    </style>
+  </head>
+  <body>
+    <h1>CSS Specificity Demonstration</h1>
+
+    <!-- This paragraph will be gray (universal) -->
+    <p>This is a basic paragraph (only universal selector applies).</p>
+
+    <!-- This paragraph will be blue (type selector overrides universal) -->
+    <p>This is a type-styled paragraph (type selector).</p>
+
+    <!-- This paragraph will be green (class overrides type and universal) -->
+    <p class="highlight">This paragraph uses a class (class selector).</p>
+
+    <!-- This paragraph will be red (ID overrides class, type, universal) -->
+    <p id="important">This paragraph uses an ID (ID selector).</p>
+
+    <!-- This paragraph will be orange (inline style overrides everything) -->
+    <p style="color: orange">
+      This paragraph uses an inline style (strongest specificity).
+    </p>
+  </body>
+</html>
