@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Attribute Selector Example</title>
+
+    <style>
+      /*
+      Attribute Selectors target elements based on the presence
+      or value of their attributes.
+
+      Basic Syntax:
+      [attribute]            — selects elements with that attribute
+      [attribute="value"]    — selects elements with exact attribute value
+      [attribute~="value"]   — value is one of a space-separated list
+      [attribute|="value"]   — value starts with "value-" or equals "value"
+      [attribute^="value"]   — value starts with "value"
+      [attribute$="value"]   — value ends with "value"
+      [attribute*="value"]   — value contains "value"
+    */
+
+      /* Select all input elements with a 'type' attribute */
+      input[type] {
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 2px solid #333;
+      }
+
+      /* Select input elements where type="text" */
+      input[type="text"] {
+        background-color: #e0f7fa;
+      }
+
+      /* Select links that open in a new tab */
+      a[target="_blank"] {
+        color: red;
+        text-decoration: underline;
+      }
+
+      /* Select images with alt attribute containing 'logo' */
+      img[alt*="logo"] {
+        border: 2px dashed green;
+        width: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>CSS Attribute Selector Example</h1>
+    <hr />
+
+    <h2>Form Inputs</h2>
+    <input type="text" placeholder="Enter your name" />
+    <input type="email" placeholder="Enter your email" />
+    <input type="password" placeholder="Enter password" />
+
+    <h2>Hyperlinks</h2>
+    <a href="https://example.com" target="_blank">Open Example in New Tab</a
+    ><br />
+    <a href="https://example.com/about">About Us</a>
+
+    <h2>Images</h2>
+    <img src="logo.png" alt="company-logo" />
+    <img src="header.png" alt="header image" />
+  </body>
+</html>
