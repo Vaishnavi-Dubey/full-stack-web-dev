@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript in HTML</title>
+
+    <!-- 
+      ✅ Internal JavaScript
+      Placed inside a <script> tag within the <head> or <body> 
+    -->
+    <script>
+      // Alert shown immediately when page loads
+      alert("Welcome to the page!");
+
+      // Message logged to the browser console
+      console.log("Page has loaded successfully.");
+    </script>
+  </head>
+
+  <body>
+    <h1>Using JavaScript in HTML</h1>
+
+    <!-- 
+      ✅ Inline JavaScript
+      JavaScript is directly written inside HTML tags using attributes like 'onclick' 
+    -->
+
+    <!-- Button with alert on click -->
+    <button onclick="alert('You clicked the button!')">Show Alert</button>
+
+    <!-- Button with console message on click -->
+    <button onclick="console.log('Button was clicked!')">Log to Console</button>
+  </body>
+</html>
