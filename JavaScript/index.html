@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JavaScript in HTML</title>
 
-    <!-- 
-      ✅ Internal JavaScript
-      Placed inside a <script> tag within the <head> or <body> 
+    <!-- ✅ Internal JavaScript 
+         JavaScript code written directly inside a <script> tag.
+         Useful for page-specific logic that doesn't need to be reused.
     -->
     <script>
-      // Alert shown immediately when page loads
+      // Alert that shows as soon as the page loads
       alert("Welcome to the page!");
 
-      // Message logged to the browser console
+      // Logging a message to the browser's developer console
       console.log("Page has loaded successfully.");
     </script>
   </head>
@@ -21,15 +21,29 @@
   <body>
     <h1>Using JavaScript in HTML</h1>
 
-    <!-- 
-      ✅ Inline JavaScript
-      JavaScript is directly written inside HTML tags using attributes like 'onclick' 
+    <!-- ✅ Inline JavaScript 
+         Code is written directly in an HTML element's event attribute (like onclick).
+         Good for very small actions, but not recommended for complex logic.
     -->
 
-    <!-- Button with alert on click -->
+    <!-- Inline JS alert on button click -->
     <button onclick="alert('You clicked the button!')">Show Alert</button>
 
-    <!-- Button with console message on click -->
+    <!-- Inline JS console log on button click -->
     <button onclick="console.log('Button was clicked!')">Log to Console</button>
+
+    <!-- Button that triggers a function from external JavaScript -->
+    <button onclick="externalFunction()">Call External JavaScript</button>
+
+    <!-- ✅ External JavaScript 
+         Links an external JS file (script.js) that contains reusable code.
+         Keeps HTML clean and separates structure from behavior.
+    -->
+    <script src="script.js"></script>
+    <script src="comparison.js"></script>
+    <script src="numberMethods.js"></script>
+    <script src="String.js"></script>
+    <script src="variables.js"></script>
+    <script src="functions.js"></script>
   </body>
 </html>
