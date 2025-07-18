@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Percentage Calculator</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .calculator {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(12px);
+        border-radius: 20px;
+        padding: 40px 30px;
+        width: 90%;
+        max-width: 400px;
+        text-align: center;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        color: #fff;
+      }
+
+      h1 {
+        margin-bottom: 25px;
+      }
+
+      .mode-select {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        justify-content: center;
+      }
+
+      .mode-select button {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        background: #fff;
+        color: #333;
+        cursor: pointer;
+        font-weight: 500;
+        transition: 0.3s;
+      }
+
+      .mode-select button.active {
+        background: #ff8a5c;
+        color: #fff;
+      }
+
+      input {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border-radius: 10px;
+        border: none;
+        font-size: 16px;
+        background: rgba(255, 255, 255, 0.3);
+        color: #fff;
+      }
+
+      input::placeholder {
+        color: #eee;
+      }
+
+      button.calculate {
+        margin-top: 10px;
+        background: #fff;
+        color: #333;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button.calculate:hover {
+        background: #333;
+        color: #fff;
+      }
+
+      .result {
+        margin-top: 20px;
+        font-size: 18px;
+        min-height: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator">
+      <h1>📊 Percentage Calculator</h1>
+
+      <div class="mode-select">
+        <button class="mode active" data-mode="of">X% of Y</button>
+        <button class="mode" data-mode="what">X is what % of Y</button>
+      </div>
+
+      <input type="number" id="x" placeholder="Enter X value" />
+      <input type="number" id="y" placeholder="Enter Y value" />
+
+      <button class="calculate" onclick="calculate()">Calculate</button>
+
+      <div class="result" id="result"></div>
+    </div>
+
+    <script>
+      let mode = "of"; // default mode
+
+      document.querySelectorAll(".mode").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".mode")
+            .forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          mode = btn.dataset.mode;
+          document.getElementById("result").textContent = "";
+        });
+      });
+
+      function calculate() {
+        const x = parseFloat(document.getElementById("x").value);
+        const y = parseFloat(document.getElementById("y").value);
+        const resultBox = document.getElementById("result");
+
+        if (isNaN(x) || isNaN(y) || y === 0) {
+          resultBox.textContent = "⚠️ Please enter valid numbers.";
+          return;
+        }
+
+        let result;
+        if (mode === "of") {
+          result = (x / 100) * y;
+          resultBox.textContent = `${x}% of ${y} is 👉 ${result.toFixed(2)}`;
+        } else if (mode === "what") {
+          result = (x / y) * 100;
+          resultBox.textContent = `${x} is 👉 ${result.toFixed(2)}% of ${y}`;
+        }
+      }
+    </script>
+  </body>
+</html>

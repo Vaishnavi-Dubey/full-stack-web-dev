@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accordion Component</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .accordion-container {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(14px);
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        width: 90%;
+        max-width: 600px;
+      }
+
+      .accordion-item {
+        background: rgba(255, 255, 255, 0.25);
+        border-radius: 12px;
+        margin-bottom: 15px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2);
+      }
+
+      .accordion-header {
+        padding: 16px 20px;
+        cursor: pointer;
+        position: relative;
+        font-weight: 600;
+        color: #fff;
+      }
+
+      .accordion-header::after {
+        content: "+";
+        position: absolute;
+        right: 20px;
+        font-size: 22px;
+        transition: transform 0.3s ease;
+      }
+
+      .accordion-item.active .accordion-header::after {
+        content: "−";
+        transform: rotate(180deg);
+      }
+
+      .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        padding: 0 20px;
+        color: #fdfdfd;
+        transition: max-height 0.4s ease, padding 0.3s ease;
+      }
+
+      .accordion-item.active .accordion-content {
+        max-height: 200px;
+        padding: 16px 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="accordion-container">
+      <div class="accordion-item">
+        <div class="accordion-header">What is an Accordion?</div>
+        <div class="accordion-content">
+          An accordion is a vertically stacked list of items that can be
+          expanded to reveal more content.
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header">How does it work?</div>
+        <div class="accordion-content">
+          When a user clicks a header, the corresponding content section
+          expands, while others collapse.
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header">Why use one?</div>
+        <div class="accordion-content">
+          Accordions help organize content and improve UX by reducing clutter on
+          the page.
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const headers = document.querySelectorAll(".accordion-header");
+
+      headers.forEach((header) => {
+        header.addEventListener("click", () => {
+          const item = header.parentElement;
+          const allItems = document.querySelectorAll(".accordion-item");
+
+          allItems.forEach((i) => {
+            if (i !== item) i.classList.remove("active");
+          });
+
+          item.classList.toggle("active");
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,42 +1,37 @@
-// Initialize count variable
 let count = 0;
 
 // Select the counter display element
 const counterEl = document.getElementById("counter");
 
-// Optional: Set initial content using innerHTML or textContent
-counterEl.textContent = count; // Displays 0 initially
-
-//! =================================
-//!        Event Listeners
-//! =================================
+// Update display
+function updateCounter() {
+  counterEl.textContent = count;
+  counterEl.style.transform = "scale(1.1)";
+  setTimeout(() => (counterEl.style.transform = "scale(1)"), 150);
+}
 
 // Increase count by 1
-document.getElementById("IncreaseBtn").addEventListener("click", function () {
+document.getElementById("increaseBtn").addEventListener("click", function () {
   count++;
-  console.log("Increased:", count);
-  counterEl.textContent = count;
+  updateCounter();
 });
 
 // Decrease count by 1
 document.getElementById("decreaseBtn").addEventListener("click", function () {
   count--;
-  console.log("Decreased:", count);
-  counterEl.textContent = count;
+  updateCounter();
 });
 
 // Increase by 10
 document
-  .getElementById("IncreaseByTenBtn")
+  .getElementById("increaseByTenBtn")
   .addEventListener("click", function () {
     count += 10;
-    console.log("Set to 10");
-    counterEl.textContent = count;
+    updateCounter();
   });
 
 // Reset count to 0
 document.getElementById("resetBtn").addEventListener("click", function () {
   count = 0;
-  console.log("Reset");
-  counterEl.textContent = count;
+  updateCounter();
 });
