@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Product Filter Demo</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 2rem;
+        background-color: #f0f2f5;
+      }
+
+      .product-card {
+        background-color: white;
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        margin: 1rem 0;
+      }
+
+      .product-name {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .category,
+      .rating {
+        font-size: 0.9rem;
+        color: #555;
+      }
+
+      h2 {
+        margin-top: 3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Product Catalog</h1>
+
+    <div class="product-card" data-category="laptop" data-rating="4.8">
+      <div class="product-name">MacBook Pro</div>
+      <div class="category">Category: Laptop</div>
+      <div class="rating">Rating: 4.8</div>
+    </div>
+
+    <div class="product-card" data-category="phone" data-rating="4.3">
+      <div class="product-name">iPhone 14</div>
+      <div class="category">Category: Phone</div>
+      <div class="rating">Rating: 4.3</div>
+    </div>
+
+    <div class="product-card" data-category="laptop" data-rating="4.7">
+      <div class="product-name">Dell XPS 13</div>
+      <div class="category">Category: Laptop</div>
+      <div class="rating">Rating: 4.7</div>
+    </div>
+
+    <div class="product-card" data-category="accessory" data-rating="4.2">
+      <div class="product-name">Apple Watch</div>
+      <div class="category">Category: Accessory</div>
+      <div class="rating">Rating: 4.2</div>
+    </div>
+
+    <div class="product-card" data-category="laptop" data-rating="4.4">
+      <div class="product-name">HP Spectre</div>
+      <div class="category">Category: Laptop</div>
+      <div class="rating">Rating: 4.4</div>
+    </div>
+
+    <script>
+      //JS SELECTORS & FILTERS
+
+      // Select all product cards
+      const productCardEls = document.querySelectorAll(".product-card");
+
+      // Select all product names
+      const productNameEls = document.querySelectorAll(".product-name");
+
+      // Log each product name
+      productNameEls.forEach((el) => {
+        console.log("Product Name:", el.innerHTML);
+      });
+
+      // Select all laptop category products
+      const laptopPricesEl = document.querySelectorAll(
+        '[data-category="laptop"]'
+      );
+      console.log("\nLAPTOP PRODUCTS:");
+      console.log(laptopPricesEl);
+
+      laptopPricesEl.forEach((el) => {
+        console.log(el.textContent);
+      });
+
+      // Select products with rating 4.7 or 4.8
+      const highestRatingsEl = document.querySelectorAll(
+        '[data-rating="4.7"], [data-rating="4.8"]'
+      );
+      console.log("\nHIGH RATED PRODUCTS:");
+      highestRatingsEl.forEach((el) => {
+        console.log(el.innerHTML);
+      });
+    </script>
+  </body>
+</html>

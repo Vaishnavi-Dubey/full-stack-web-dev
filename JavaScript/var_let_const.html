@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript ES6 – Let, Const & Var</title>
+
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: #f4f7fc;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 10px;
+      }
+
+      h2 {
+        color: #34495e;
+        margin-top: 25px;
+      }
+
+      pre {
+        background: #1e1e1e;
+        color: #00ff88;
+        padding: 15px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 700px;
+        overflow-x: auto;
+        font-size: 14px;
+      }
+
+      #output {
+        background-color: #ecf0f1;
+        border-radius: 8px;
+        padding: 15px;
+        margin-top: 20px;
+        width: 90%;
+        max-width: 700px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>🧠 JavaScript ES6</h1>
+    <h2>Let, Const, and Var – Understanding the Difference</h2>
+
+    <p>Open the console to view behavior details.</p>
+
+    <pre>
+//  var causes hoisting issues
+//  let solves hoisting + supports block scope
+//  const adds immutability (cannot be reassigned)
+    </pre>
+
+    <div id="output">Running examples...</div>
+
+    <script>
+      const output = document.getElementById("output");
+      output.innerHTML =
+        "<strong>Check the console for step-by-step logs 👇</strong>";
+
+      console.log("🚀 --- LET, CONST & VAR DEMONSTRATION ---");
+
+      //1️ HOISTING ISSUE (var vs let)
+
+      console.log("➡️ Example 1: Hoisting Issue with var");
+
+      function hoistingIssueVar() {
+        console.log(a); // ❌ Accessing before declaration — gives "undefined"
+        var a = 10;
+        console.log("✅ After declaration:", a);
+      }
+
+      hoistingIssueVar();
+
+      console.log("\n➡️ Example 2: Hoisting with let");
+      function hoistingIssueLet() {
+        try {
+          console.log(a); // ❌ Throws ReferenceError
+          let a = 10;
+        } catch (error) {
+          console.error("❗ Error:", error.message);
+        }
+      }
+
+      hoistingIssueLet();
+
+      // BLOCK SCOPE ISSUE (var vs let)
+
+      console.log("\n➡️ Example 3: Block Scope difference");
+
+      console.log("🔸 Using var:");
+      for (var i = 0; i < 3; i++) {
+        console.log("Inside loop:", i);
+      }
+      console.log("Outside loop:", i); // ❌ Still accessible → var leaks out of block
+
+      console.log("\n🔸 Using let:");
+      try {
+        for (let j = 0; j < 3; j++) {
+          console.log("Inside loop:", j);
+        }
+        console.log("Outside loop:", j); // ❌ Not accessible → ReferenceError
+      } catch (error) {
+        console.error("❗ Error:", error.message);
+      }
+
+      // CONST & IMMUTABILITY
+
+      console.log("\n➡️ Example 4: Const immutability");
+
+      const x = 10;
+      console.log("Initial const x:", x);
+      try {
+        x = 20; // ❌ Throws TypeError
+      } catch (error) {
+        console.error("❗ Error:", error.message);
+      }
+
+      console.log(
+        "\n➡️ Example 5: Const with Objects & Arrays (Mutable contents)"
+      );
+
+      const user = { name: "Alice", age: 25 };
+      user.age = 26; // ✅ Allowed: properties can change
+      console.log("Updated user:", user);
+
+      const numbers = [1, 2, 3];
+      numbers.push(4); // ✅ Allowed: elements can change
+      console.log("Updated array:", numbers);
+
+      try {
+        user = { name: "Bob" }; // ❌ Cannot reassign the const reference
+      } catch (error) {
+        console.error("❗ Error:", error.message);
+      }
+
+      const summary = `
+        <h3>✅ Summary:</h3>
+        <ul>
+          <li><strong>var:</strong> Function-scoped, hoisted, and allows re-declaration.</li>
+          <li><strong>let:</strong> Block-scoped, not hoisted, and allows re-assignment.</li>
+          <li><strong>const:</strong> Block-scoped, not hoisted, and immutable reference.</li>
+        </ul>
+      `;
+
+      output.innerHTML += summary;
+
+      console.log(`
+🧠 Key Takeaways:
+- var → hoisted + function scoped (avoid using it)
+- let → block scoped + can be reassigned
+- const → block scoped + cannot be reassigned
+- const objects & arrays → reference fixed, but contents can change
+`);
+
+      console.log("🚀 --- END OF DEMONSTRATION ---");
+    </script>
+  </body>
+</html>

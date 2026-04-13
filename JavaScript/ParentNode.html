@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Traversal - parentNode Example</title>
+
+    <style>
+      /* ===== Basic Styling ===== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        background-color: #f4f7fc;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px;
+      }
+
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+      }
+
+      /* ===== Container Hierarchy Visualization ===== */
+      .outer {
+        border: 3px solid #2980b9;
+        padding: 20px;
+        border-radius: 8px;
+        width: 80%;
+        max-width: 600px;
+        background: #eaf2f8;
+      }
+
+      .inner {
+        border: 2px dashed #27ae60;
+        padding: 15px;
+        border-radius: 6px;
+        background: #e8f8f5;
+      }
+
+      ul {
+        background: #fef9e7;
+        border-radius: 6px;
+        padding: 15px;
+        list-style-type: none;
+      }
+
+      li {
+        padding: 10px;
+        margin-bottom: 6px;
+        border-radius: 6px;
+        background-color: #f2f3f4;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      li:hover {
+        background-color: #d6dbdf;
+      }
+
+      #log {
+        margin-top: 20px;
+        width: 80%;
+        max-width: 600px;
+        background: #ecf0f1;
+        border-radius: 8px;
+        padding: 10px;
+        color: #2c3e50;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>🌳 Traversing the DOM with parentNode</h1>
+
+    <!-- Great Grandparent -->
+    <div class="outer" id="outerDiv">
+      <!-- Grandparent -->
+      <div class="inner" id="innerDiv">
+        <!-- Parent -->
+        <ul id="list">
+          <li data-item="apple">Apple</li>
+          <li data-item="banana">Banana</li>
+          <li data-item="fruit">Watermelon</li>
+          <li data-item="cherry">Cherry</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="log">
+      Click the "Fruit" item to see its parent hierarchy in console.
+    </div>
+
+    <script>
+      //STEP 1: SELECT CHILD ELEMENT (the target node)
+
+      const selectedItemElement = document.querySelector('[data-item="fruit"]');
+      console.log("Selected Child Element:", selectedItemElement);
+
+      //STEP 2: ACCESS THE PARENT ELEMENT (UL)
+
+      const parentListElement = selectedItemElement.parentNode;
+      console.log("Parent Node (UL):", parentListElement);
+
+      //STEP 3: ACCESS THE GRANDPARENT ELEMENT (DIV .inner)
+
+      const grandParentDiv = parentListElement.parentNode;
+      console.log("Grandparent Node (.inner div):", grandParentDiv);
+
+      //STEP 4: ACCESS THE GREAT GRANDPARENT (DIV .outer)
+
+      const greatGrandParentDiv = grandParentDiv.parentNode;
+      console.log("Great Grandparent Node (.outer div):", greatGrandParentDiv);
+
+      //STEP 5: Event listener for visual interaction
+
+      selectedItemElement.addEventListener("click", () => {
+        console.clear();
+
+        console.log(" Selected Child:", selectedItemElement);
+        console.log(" Parent (UL):", parentListElement);
+        console.log(" Grandparent (.inner DIV):", grandParentDiv);
+        console.log(" Great Grandparent (.outer DIV):", greatGrandParentDiv);
+
+        document.getElementById("log").textContent =
+          " Open the console to see parentNode traversal logs!";
+      });
+    </script>
+  </body>
+</html>

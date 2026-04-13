@@ -1,0 +1,33 @@
+/* External CSS file: style.css */
+
+body {
+  background-color: #fdf6e3;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 20px;
+}
+
+h1 {
+  color: #2e8b57;
+  text-align: center;
+}
+
+p {
+  font-size: 18px;
+  color: #555;
+  text-align: center;
+}
+
+button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #2e8b57;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #276f4b;
+}

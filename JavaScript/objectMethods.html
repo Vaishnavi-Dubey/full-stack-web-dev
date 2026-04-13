@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Object Methods</title>
+
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: #f8faff;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 10px;
+      }
+
+      pre {
+        background: #1e1e1e;
+        color: #00ff88;
+        padding: 20px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 750px;
+        overflow-x: auto;
+        font-size: 14px;
+      }
+
+      #output {
+        background-color: #ecf0f1;
+        border-radius: 8px;
+        padding: 20px;
+        width: 90%;
+        max-width: 750px;
+        margin-top: 25px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>⚙️ JavaScript Object Methods</h1>
+    <p>Check your browser console for detailed explanations.</p>
+
+    <pre>
+// Object Methods Demonstrated:
+// 1. Object.keys()
+// 2. Object.values()
+// 3. hasOwnProperty()
+// 4. Object.assign()
+// 5. delete operator
+// 6. Object.freeze()
+    </pre>
+
+    <div id="output">Running object methods demo...</div>
+
+    <script>
+      console.log(" --- OBJECT METHODS DEMO START ---");
+
+      // OBJECT.KEYS()
+
+      console.log("\n➡️ Object.keys()");
+      const person = {
+        name: "Alice",
+        age: 25,
+        city: "New York",
+        hobby: "Coding",
+        country: "USA",
+        isMarried: false,
+        courses: ["JavaScript", "React", "Node.js"],
+      };
+
+      const keys = Object.keys(person);
+      console.log("All Keys:", keys);
+      console.log("Total Number of Keys:", keys.length);
+
+      // OBJECT.VALUES()
+
+      console.log("\n➡️ Object.values()");
+      const car = {
+        brand: "Honda",
+        model: "Accord",
+        year: 2025,
+      };
+
+      const values = Object.values(car);
+      console.log("All Values:", values);
+
+      // hasOwnProperty()
+
+      console.log("\n➡️ hasOwnProperty()");
+      const hasBrand = car.hasOwnProperty("brand");
+      const hasMake = car.hasOwnProperty("make");
+      console.log("Has 'brand' property:", hasBrand);
+      console.log("Has 'make' property:", hasMake);
+
+      // OBJECT.ASSIGN()
+
+      console.log("\n➡️ Object.assign()");
+      const targetObj = { name: "Thermos" };
+      const sourceObj = { age: 30, country: "USA" };
+
+      const merged = Object.assign(targetObj, sourceObj);
+      console.log("Merged Object:", merged);
+
+      // DELETE OPERATOR
+
+      console.log("\n➡️ delete operator");
+      console.log("Before delete:", car);
+      delete car.brand;
+      console.log("After deleting 'brand':", car);
+
+      // OBJECT.FREEZE()
+
+      console.log("\n➡️ Object.freeze()");
+      Object.freeze(car);
+      car.make = "Nissan"; // Attempt to add new property (will fail silently)
+      console.log("After attempting to add 'make':", car);
+
+      //DISPLAY RESULTS IN THE BROWSER
+
+      const output = document.getElementById("output");
+      output.innerHTML = `
+        <h3> Object Methods Summary</h3>
+        <ul>
+          <li><strong>Object.keys(person):</strong> [${keys.join(", ")}]</li>
+          <li><strong>person hasOwnProperty("city"):</strong> ${person.hasOwnProperty(
+            "city"
+          )}</li>
+          <li><strong>Object.values(car):</strong> [${values.join(", ")}]</li>
+          <li><strong>Object.assign(target, source):</strong> ${JSON.stringify(
+            merged
+          )}</li>
+          <li><strong>After delete 'brand':</strong> ${JSON.stringify(car)}</li>
+          <li><strong>After Object.freeze(car):</strong> cannot add/modify/delete properties</li>
+        </ul>
+      `;
+
+      console.log(`
+ Key Takeaways:
+
+ Object.keys(obj)
+   → Returns an array of all property names (keys).
+
+ Object.values(obj)
+   → Returns an array of all property values.
+
+ hasOwnProperty('key')
+   → Checks if a key exists in the object (returns true/false).
+
+ Object.assign(target, source)
+   → Copies properties from one or more objects into the target object.
+
+ delete obj.key
+   → Removes a property from the object.
+
+ Object.freeze(obj)
+   → Makes an object immutable (cannot be modified, added to, or deleted).
+
+ Tips:
+- Use Object.keys() to iterate over an object’s properties easily.
+- Object.assign() is often used for cloning or merging objects.
+- Object.freeze() is useful for locking configurations and constants.
+`);
+
+      console.log(" --- END OF OBJECT METHODS DEMO ---");
+    </script>
+  </body>
+</html>

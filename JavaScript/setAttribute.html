@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>setAttribute() Demo</title>
+
+    <style>
+      /* ===== Basic Styling ===== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        background-color: #f4f7fc;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px;
+      }
+
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+      }
+
+      .wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        background-color: white;
+        padding: 30px;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 600px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .product {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 15px;
+        background-color: #f9fafb;
+      }
+
+      .product img {
+        border-radius: 8px;
+        width: 300px;
+        height: 200px;
+        object-fit: cover;
+        border: 2px solid #3498db;
+      }
+
+      a {
+        color: white;
+        background-color: #3498db;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+      }
+
+      a:hover {
+        background-color: #2980b9;
+      }
+
+      button {
+        margin-top: 10px;
+        padding: 10px 18px;
+        background-color: #2ecc71;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #27ae60;
+      }
+
+      #log {
+        margin-top: 15px;
+        background-color: #ecf0f1;
+        padding: 10px;
+        border-radius: 8px;
+        color: #2c3e50;
+        width: 90%;
+        max-width: 600px;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>🧩 Using setAttribute() to Manipulate the DOM</h1>
+
+    <div class="wrapper">
+      <div id="product1" class="product">
+        <img
+          src="https://picsum.photos/id/1015/300/200"
+          alt="Default Product Image"
+          style="border: 2px solid #9b59b6"
+        />
+        <a href="old-link.html" target="_blank">Buy Now</a>
+        <button id="updateBtn">Update Product</button>
+      </div>
+    </div>
+
+    <div id="log">
+      Click “Update Product” to change the attributes dynamically.
+    </div>
+
+    <script>
+      //STEP 1: SELECT ELEMENTS
+
+      const product1 = document.getElementById("product1");
+
+      // Select the image inside product1 using querySelector
+      const productImage = product1.querySelector("img");
+
+      // Select the link (a tag)
+      const productLink = product1.querySelector("a");
+
+      const updateBtn = document.getElementById("updateBtn");
+      const log = document.getElementById("log");
+
+      //STEP 2: DEFINE FUNCTION TO UPDATE ATTRIBUTES
+
+      function updateProductAttributes() {
+        // ---- Change the image source using setAttribute() ----
+        productImage.setAttribute(
+          "src",
+          "https://cdn.pixabay.com/photo/2016/11/29/04/17/fruit-1869132_640.jpg"
+        );
+
+        // ---- Change the 'alt' text ----
+        productImage.setAttribute("alt", "Fresh Fruits Product");
+
+        // ---- Change the product link (href) ----
+        productLink.setAttribute("href", "https://pixabay.com");
+
+        // ---- Optionally add a new custom data attribute ----
+        productImage.setAttribute("data-category", "Fruits");
+
+        // ---- Log updated attributes ----
+        console.log("New Image SRC:", productImage.getAttribute("src"));
+        console.log("New ALT:", productImage.getAttribute("alt"));
+        console.log("New Link HREF:", productLink.getAttribute("href"));
+        console.log(
+          "Custom Data Attribute:",
+          productImage.getAttribute("data-category")
+        );
+
+        // ---- Update status message ----
+        log.textContent =
+          "✅ Product attributes updated successfully! Image, alt text, and link changed.";
+      }
+
+      //STEP 3: ADD EVENT LISTENER
+
+      updateBtn.addEventListener("click", updateProductAttributes);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ClassList Property Demo</title>
+
+    <style>
+      /* Basic styling */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        background-color: #f4f7fc;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+      }
+
+      .container {
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        max-width: 600px;
+      }
+
+      .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      button {
+        padding: 10px 18px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #2980b9;
+      }
+
+      p {
+        text-align: center;
+        font-size: 18px;
+        padding: 20px;
+        border-radius: 8px;
+        border: 2px dashed #95a5a6;
+        transition: all 0.3s;
+      }
+
+      /* Classes to manipulate dynamically */
+      .highlight {
+        background-color: #ffeaa7;
+      }
+
+      .bold {
+        font-weight: bold;
+      }
+
+      .italic {
+        font-style: italic;
+      }
+
+      .red-text {
+        color: red;
+      }
+
+      .log {
+        margin-top: 20px;
+        background-color: #ecf0f1;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 15px;
+        color: #2c3e50;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>DOM ClassList Property Demo</h1>
+
+    <div class="container">
+      <!-- Target element to manipulate -->
+      <p id="textElement">Watch me change as you click the buttons!</p>
+
+      <!-- Buttons for each classList method -->
+      <div class="buttons">
+        <button id="addBtn">Add Class</button>
+        <button id="removeBtn">Remove Class</button>
+        <button id="toggleBtn">Toggle Class</button>
+        <button id="containsBtn">Contains?</button>
+        <button id="replaceBtn">Replace Class</button>
+        <button id="itemBtn">List Item (Index)</button>
+        <button id="valueBtn">Get Value</button>
+      </div>
+
+      <!-- Output log -->
+      <div class="log" id="logArea">Log output will appear here...</div>
+    </div>
+
+    <script>
+      // ==============================
+      // DOM SELECTION
+      // ==============================
+      const p = document.getElementById("textElement");
+      const logArea = document.getElementById("logArea");
+
+      // Buttons
+      const addBtn = document.getElementById("addBtn");
+      const removeBtn = document.getElementById("removeBtn");
+      const toggleBtn = document.getElementById("toggleBtn");
+      const containsBtn = document.getElementById("containsBtn");
+      const replaceBtn = document.getElementById("replaceBtn");
+      const itemBtn = document.getElementById("itemBtn");
+      const valueBtn = document.getElementById("valueBtn");
+
+      //CLASSLIST OVERVIEW
+
+      // The classList property provides easy access to manipulate
+      // CSS classes on a DOM element.
+      // Common methods: add(), remove(), toggle(), contains(), replace(), item(), and value.
+
+      //ADD CLASS
+
+      addBtn.addEventListener("click", function addClass() {
+        // Add multiple classes at once (highlight, bold, italic)
+        p.classList.add("highlight", "bold", "italic");
+        logArea.textContent = "Classes added: highlight, bold, italic";
+        console.log(p.classList);
+      });
+
+      //REMOVE CLASS
+
+      removeBtn.addEventListener("click", function removeClass() {
+        // Remove all the previously added classes
+        p.classList.remove("highlight", "bold", "italic");
+        logArea.textContent = "Removed classes: highlight, bold, italic";
+        console.log(p.classList);
+      });
+
+      //TOGGLE CLASS
+
+      toggleBtn.addEventListener("click", function toggleClass() {
+        // Toggle will add the class if it’s not present,
+        // and remove it if it is present.
+        p.classList.toggle("highlight");
+        logArea.textContent = "Toggled 'highlight' class!";
+        console.log("Highlight toggled:", p.classList.contains("highlight"));
+      });
+
+      //CONTAINS CLASS
+
+      containsBtn.addEventListener("click", function containsClass() {
+        // Returns true if the element has a specific class
+        const hasHighlight = p.classList.contains("highlight");
+        if (hasHighlight) {
+          alert(" Element contains 'highlight' class!");
+          logArea.textContent = "Element contains 'highlight' class!";
+        } else {
+          alert("❌ Element does NOT contain 'highlight' class!");
+          logArea.textContent = "Element does NOT contain 'highlight' class!";
+        }
+        console.log("Contains 'highlight':", hasHighlight);
+      });
+
+      //REPLACE CLASS
+
+      replaceBtn.addEventListener("click", function replaceClass() {
+        // Replace one class with another (italic → red-text)
+        if (p.classList.contains("italic")) {
+          p.classList.replace("italic", "red-text");
+          logArea.textContent = "Replaced 'italic' with 'red-text'";
+        } else {
+          p.classList.add("red-text");
+          logArea.textContent =
+            "Added 'red-text' since 'italic' was not found.";
+        }
+        console.log(p.classList);
+      });
+
+      //ITEM METHOD
+
+      itemBtn.addEventListener("click", function listItem() {
+        // Get class name by index
+        const firstClass = p.classList.item(0);
+        if (firstClass) {
+          alert(`The first class in list is: ${firstClass}`);
+          logArea.textContent = `First class in list: ${firstClass}`;
+        } else {
+          alert("No classes applied yet!");
+          logArea.textContent = "No classes found on element.";
+        }
+        console.log("Class list item(0):", firstClass);
+      });
+
+      //VALUE PROPERTY
+
+      valueBtn.addEventListener("click", function getValue() {
+        // Returns all class names as a single space-separated string
+        const value = p.classList.value;
+        logArea.textContent =
+          value.length > 0
+            ? `Current classList value: ${value}`
+            : "No class values found.";
+        console.log("ClassList value:", value);
+      });
+
+      //EXTRA: DEMONSTRATE LIVE COLLECTION
+
+      // The classList is LIVE, meaning it updates automatically
+      // whenever classes are added or removed.
+      const observer = new MutationObserver(() => {
+        console.log("Class list changed:", p.classList.value);
+      });
+      observer.observe(p, { attributes: true, attributeFilter: ["class"] });
+    </script>
+  </body>
+</html>

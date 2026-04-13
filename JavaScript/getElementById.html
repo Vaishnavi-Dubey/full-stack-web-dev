@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>getElementById</title>
+  </head>
+  <body>
+    <!-- Element with an ID -->
+    <h2 id="greeting">Hello, Guest!</h2>
+
+    <!-- Button to trigger JavaScript -->
+    <button onclick="changeGreeting()">Click Me</button>
+
+    <script>
+      // This function changes the text content of the element with id="greeting"
+      function changeGreeting() {
+        // Get the element by its ID
+        const greetingEl = document.getElementById("greeting");
+
+        // Change the content of the element
+        greetingEl.textContent = "Welcome, Vaishnavi!";
+      }
+    </script>
+  </body>
+</html>

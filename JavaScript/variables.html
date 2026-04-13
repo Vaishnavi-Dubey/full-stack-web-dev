@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JS Variables & Data Types Demo</title>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background: #eef2f7;
+        padding: 2rem;
+      }
+
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 1rem;
+      }
+
+      .output {
+        background: #ffffff;
+        padding: 1rem;
+        border-left: 4px solid #27ae60;
+        font-family: "Courier New", monospace;
+        white-space: pre-wrap;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .section {
+        margin-top: 2rem;
+      }
+
+      .section h2 {
+        color: #34495e;
+        border-bottom: 2px dashed #bbb;
+        padding-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>💻 JavaScript Variables & Data Types</h1>
+    <div class="output" id="output"></div>
+
+    <script>
+      const log = [];
+
+      //VARIABLES: DECLARATION AND INITIALIZATION
+
+      let age = 30;
+      log.push("Age: " + age);
+
+      let country;
+      country = "Ghana";
+      log.push("Country: " + country);
+
+      let firstName, lastName;
+      firstName = "Zoro";
+      lastName = "Roronoa";
+      log.push("Full Name: " + firstName + " " + lastName);
+
+      let kill = 30,
+        job = "Pirate",
+        country1 = "Japan";
+      log.push(`Kill: ${kill}, Job: ${job}, Country: ${country1}`);
+
+      //PRIMITIVE DATA TYPES
+
+      let age1 = 25;
+      let price = 19.99;
+
+      let heroName = "Monkey D. Luffy";
+      let greeting = "Hello, World!";
+
+      let isCaptain = true;
+
+      let notAssigned;
+
+      let emptyValue = null;
+
+      log.push("\nPrimitive Types:");
+      log.push(`Number: ${age1}, Float: ${price}`);
+      log.push(`String: ${heroName}`);
+      log.push(`Boolean: ${isCaptain}`);
+      log.push(`Undefined: ${notAssigned}`);
+      log.push(`Null: ${emptyValue}`);
+
+      //NON-PRIMITIVE DATA TYPES
+
+      let fruits = ["Apple", "Banana", "Cherry"];
+      log.push("\nArray Example:");
+      log.push("First Fruit: " + fruits[0]);
+      log.push("Total Fruits: " + fruits.length);
+
+      let person = {
+        name: "Nami",
+        age: 20,
+        isNavigator: true,
+      };
+
+      log.push("\nObject Example:");
+      log.push("Person Name: " + person.name);
+      log.push("Person Age: " + person["age"]);
+
+      //LET vs CONST vs VAR
+
+      let amount = 40;
+      amount = 100;
+      log.push("\nlet (reassigned): " + amount);
+
+      const carName = "Mahindra";
+      log.push("const (fixed): " + carName);
+
+      var pirate = "Luffy";
+      pirate = "Zoro";
+      log.push("var (reassigned): " + pirate);
+
+      //Output to Page
+
+      document.getElementById("output").innerText = log.join("\n");
+    </script>
+  </body>
+</html>

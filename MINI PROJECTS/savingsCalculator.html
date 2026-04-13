@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Savings Calculator</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to right, #6dd5ed, #2193b0);
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+      }
+
+      .calculator {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 30px;
+        width: 90%;
+        max-width: 400px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+
+      .calculator h1 {
+        margin-bottom: 20px;
+        font-size: 26px;
+      }
+
+      .calculator input {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border-radius: 10px;
+        border: none;
+        font-size: 16px;
+        background: rgba(255, 255, 255, 0.2);
+        color: #fff;
+      }
+
+      input::placeholder {
+        color: #eee;
+      }
+
+      .calculator button {
+        margin-top: 15px;
+        padding: 12px 20px;
+        font-size: 16px;
+        border: none;
+        background: #ffffff;
+        color: #333;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .calculator button:hover {
+        background: #333;
+        color: #fff;
+      }
+
+      .result {
+        margin-top: 20px;
+        font-size: 18px;
+        min-height: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator">
+      <h1>💰 Savings Calculator</h1>
+
+      <input type="number" id="initial" placeholder="Initial Amount (₹)" />
+      <input
+        type="number"
+        id="monthly"
+        placeholder="Monthly Contribution (₹)"
+      />
+      <input type="number" id="rate" placeholder="Annual Interest Rate (%)" />
+      <input type="number" id="years" placeholder="Years to Save" />
+
+      <button onclick="calculateSavings()">Calculate</button>
+
+      <div class="result" id="result"></div>
+    </div>
+
+    <script>
+      function calculateSavings() {
+        const initial = parseFloat(document.getElementById("initial").value);
+        const monthly = parseFloat(document.getElementById("monthly").value);
+        const rate = parseFloat(document.getElementById("rate").value);
+        const years = parseFloat(document.getElementById("years").value);
+        const resultEl = document.getElementById("result");
+
+        if (
+          isNaN(initial) ||
+          isNaN(monthly) ||
+          isNaN(rate) ||
+          isNaN(years) ||
+          rate < 0 ||
+          years <= 0
+        ) {
+          resultEl.textContent = "⚠️ Please enter valid inputs.";
+          return;
+        }
+
+        const monthlyRate = rate / 100 / 12;
+        const months = years * 12;
+
+        let futureValue = initial * Math.pow(1 + monthlyRate, months);
+
+        for (let i = 1; i <= months; i++) {
+          futureValue += monthly * Math.pow(1 + monthlyRate, months - i);
+        }
+
+        resultEl.textContent = `🎯 Future Savings: ₹${futureValue.toFixed(2)}`;
+      }
+    </script>
+  </body>
+</html>

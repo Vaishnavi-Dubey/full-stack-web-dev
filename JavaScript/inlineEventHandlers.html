@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inline Event Handlers</title>
+    <style>
+      /* Basic page styling */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        background: #f4f7fc;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h1 {
+        margin-bottom: 25px;
+        color: #2c3e50;
+      }
+
+      .section {
+        background: white;
+        padding: 25px 30px;
+        margin: 15px 0;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        max-width: 500px;
+      }
+
+      .section h2 {
+        margin-bottom: 15px;
+        color: #34495e;
+        font-size: 20px;
+        border-bottom: 2px solid #3498db;
+        padding-bottom: 8px;
+      }
+
+      button {
+        margin: 5px;
+        padding: 10px 20px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 15px;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #2980b9;
+      }
+
+      .hover-box {
+        margin-top: 10px;
+        padding: 15px;
+        background-color: #ecf0f1;
+        border: 2px dashed #95a5a6;
+        border-radius: 10px;
+        text-align: center;
+        transition: background-color 0.3s;
+      }
+
+      .hover-box.active {
+        background-color: #ffeaa7;
+        border-color: #f39c12;
+      }
+
+      input[type="text"] {
+        padding: 8px 12px;
+        width: 100%;
+        margin-top: 8px;
+        font-size: 15px;
+        border-radius: 6px;
+        border: 1px solid #bdc3c7;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .log {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #555;
+        background-color: #f4f6f8;
+        padding: 10px;
+        border-radius: 8px;
+        min-height: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Inline Event Handlers Demo</h1>
+
+    <!-- //* MOUSE EVENTS SECTION -->
+    <div class="section">
+      <h2>Mouse Events</h2>
+
+      <!-- onclick event handler -->
+      <button onclick="clickHandler()">Click Me!</button>
+
+      <!-- ondblclick event handler -->
+      <button ondblclick="doubleClickHandler()">Double Click Me!</button>
+
+      <!-- onmouseover & onmouseout on a div -->
+      <div
+        class="hover-box"
+        id="hoverBox"
+        onmouseover="onMouseOverHandler()"
+        onmouseout="onMouseOutHandler()"
+      >
+        Hover over me
+      </div>
+
+      <div class="log" id="mouseLog">Mouse event log will appear here...</div>
+    </div>
+
+    <!-- //* KEYBOARD EVENTS SECTION -->
+    <div class="section">
+      <h2>Keyboard Events</h2>
+
+      <!-- onkeydown, onkeyup, onkeypress -->
+      <input
+        type="text"
+        placeholder="Type something here..."
+        onkeydown="onKeyDownHandler(event)"
+        onkeyup="onKeyUpHandler(event)"
+        onkeypress="onKeyPressHandler(event)"
+      />
+
+      <div class="log" id="keyLog">Keyboard event log will appear here...</div>
+    </div>
+
+    <!-- //* FORM EVENTS SECTION -->
+    <div class="section">
+      <h2>Form Events</h2>
+
+      <!-- onsubmit handler (prevents default form refresh) -->
+      <form onsubmit="onSubmitHandler(event)">
+        <input
+          type="text"
+          placeholder="Enter your name"
+          onfocus="onFocusHandler()"
+          onblur="onBlurHandler()"
+        />
+        <button type="submit">Submit</button>
+      </form>
+
+      <div class="log" id="formLog">Form log will appear here...</div>
+    </div>
+
+    <script>
+      //? Get elements for logs
+      const mouseLog = document.getElementById("mouseLog");
+      const keyLog = document.getElementById("keyLog");
+      const formLog = document.getElementById("formLog");
+      const hoverBox = document.getElementById("hoverBox");
+
+      //------------------ MOUSE EVENT HANDLERS ------------------
+      function clickHandler() {
+        console.log("Click event is called");
+        mouseLog.textContent = "Click event is called!";
+      }
+
+      function doubleClickHandler() {
+        console.log("Double click event is called");
+        mouseLog.textContent = "Double click event is called!";
+      }
+
+      function onMouseOverHandler() {
+        console.log("Mouse over event is called");
+        mouseLog.textContent = "Mouse over event is called!";
+        hoverBox.classList.add("active");
+      }
+
+      function onMouseOutHandler() {
+        console.log("Mouse out event is called");
+        mouseLog.textContent = "Mouse out event is called!";
+        hoverBox.classList.remove("active");
+      }
+
+      //------------------ KEYBOARD EVENT HANDLERS ------------------
+      // Fires when key is pressed down
+      function onKeyDownHandler(event) {
+        console.log("Key Down:", event.key);
+        keyLog.textContent = `Key Down: ${event.key}`;
+      }
+
+      // Fires when key is released
+      function onKeyUpHandler(event) {
+        console.log("Key Up:", event.key);
+        keyLog.textContent = `Key Up: ${event.key}`;
+      }
+
+      // Fires when key is pressed (once)
+      function onKeyPressHandler(event) {
+        console.log("Key Press:", event.key);
+        keyLog.textContent = `Key Pressed: ${event.key}`;
+      }
+
+      //------------------ FORM EVENT HANDLERS ------------------
+      // Prevents default submission (no refresh)
+      function onSubmitHandler(event) {
+        event.preventDefault();
+        const inputVal = event.target[0].value;
+        console.log("Form Submitted with:", inputVal);
+        formLog.textContent = `Form Submitted with: ${inputVal}`;
+      }
+
+      // Fires when input gets focus
+      function onFocusHandler() {
+        console.log("Input Focused");
+        formLog.textContent = "Input field is focused!";
+      }
+
+      // Fires when input loses focus
+      function onBlurHandler() {
+        console.log("Input blurred (focus lost)");
+        formLog.textContent = "Input field lost focus!";
+      }
+    </script>
+  </body>
+</html>

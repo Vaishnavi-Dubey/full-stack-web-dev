@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>child vs children Demo</title>
+    <style>
+      body {
+        font-family: monospace;
+        padding: 20px;
+        background-color: #f4f4f4;
+      }
+      .container {
+        background: #fff;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+      }
+      .container > div {
+        margin: 5px 0;
+        padding: 10px;
+        background: #e0e0e0;
+      }
+      pre {
+        background-color: #000;
+        color: #0f0;
+        padding: 10px;
+        border-radius: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>DOM: <code>childNodes</code> vs <code>children</code></h2>
+    <div class="container" id="parent">
+      Text node
+      <div>Child 1</div>
+      <div>Child 2</div>
+      <div>Child 3</div>
+    </div>
+
+    <h3>Console Output:</h3>
+    <pre id="output"></pre>
+
+    <script>
+      const parentEl = document.getElementById("parent");
+
+      //childNodes includes ALL nodes: text, comment, elements
+      const allChildNodes = parentEl.childNodes;
+
+      //children includes only element nodes (ignores text, comments)
+      const onlyChildren = parentEl.children;
+
+      //? Displaying results
+      let result = "";
+
+      //* List childNodes
+      result += "//? childNodes:\n";
+      allChildNodes.forEach((node, index) => {
+        result += `Index ${index}: ${node.nodeName} (type: ${node.nodeType})\n`;
+      });
+
+      result += "\n//children:\n";
+      for (let i = 0; i < onlyChildren.length; i++) {
+        result += `Element ${i}: ${onlyChildren[i].textContent.trim()}\n`;
+      }
+
+      document.getElementById("output").textContent = result;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auto‑Typing DOM Project</title>
+
+    <!-- ===== CSS ===== -->
+    <style>
+      /* 1. Layout & background */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+        font-family: "Segoe UI", sans-serif;
+        overflow: hidden;
+      }
+
+      /* 2. Typing box */
+      .type-box {
+        padding: 40px 50px;
+        border-radius: 25px;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(14px);
+        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.25);
+        text-align: center;
+        max-width: 500px;
+        width: 90%;
+      }
+
+      .type-box h1 {
+        font-size: 28px;
+        color: #fff;
+        margin-bottom: 25px;
+        letter-spacing: 1px;
+      }
+
+      /* 3. Auto‑typing text */
+      #typed {
+        display: inline-block;
+        font-size: 22px;
+        line-height: 32px;
+        color: #fff;
+        min-height: 32px; /* prevents box jump */
+        word-break: break-word;
+      }
+
+      /* 4. Blinking cursor */
+      .cursor {
+        display: inline-block;
+        width: 2px;
+        height: 32px;
+        background: #fff;
+        margin-left: 4px;
+        animation: blink 0.9s step-end infinite;
+      }
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      /* 5. Controls (optional) */
+      .controls {
+        margin-top: 30px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+      .controls input,
+      .controls button {
+        padding: 10px 16px;
+        border: none;
+        border-radius: 10px;
+        font-size: 14px;
+        outline: none;
+      }
+      .controls input {
+        flex: 1 1 140px;
+      }
+      .controls button {
+        background: #fff;
+        color: #333;
+        cursor: pointer;
+        transition: 0.25s;
+      }
+      .controls button:hover {
+        background: #333;
+        color: #fff;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="type-box">
+      <h1>Auto‑Typing Demo</h1>
+      <span id="typed"></span><span class="cursor"></span>
+
+      <!-- optional: let the user add their own phrase -->
+      <div class="controls">
+        <input type="text" id="newPhrase" placeholder="Add your own phrase…" />
+        <button id="addBtn">Add Phrase</button>
+      </div>
+    </div>
+
+    <!-- ===== JavaScript ===== -->
+    <script>
+      /* -------- 1. Data -------- */
+      const phrases = [
+        "Hello, World! 👋",
+        "Welcome to the DOM typing effect.",
+        "Everything in one HTML file!",
+        "Customize or add your own text below 🚀",
+      ];
+
+      /* -------- 2. Elements -------- */
+      const typedEl = document.getElementById("typed");
+      const addBtn = document.getElementById("addBtn");
+      const newInput = document.getElementById("newPhrase");
+
+      /* -------- 3. Typing Logic -------- */
+      let phraseIndex = 0,
+        charIndex = 0,
+        isDeleting = false;
+      const typingSpeed = 90; // ms per char
+      const deletingSpeed = 45;
+      const endOfPhrasePause = 1200; // ms pause at phrase end
+
+      function typeLoop() {
+        const currentPhrase = phrases[phraseIndex];
+
+        // Add or remove characters
+        if (!isDeleting) {
+          charIndex++;
+          typedEl.textContent = currentPhrase.slice(0, charIndex);
+        } else {
+          charIndex--;
+          typedEl.textContent = currentPhrase.slice(0, charIndex);
+        }
+
+        // Decide what to do next
+        let delay = isDeleting ? deletingSpeed : typingSpeed;
+
+        // At end of full phrase
+        if (!isDeleting && charIndex === currentPhrase.length) {
+          isDeleting = true;
+          delay = endOfPhrasePause;
+        }
+        // Phrase completely deleted
+        else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          delay = 400;
+        }
+
+        setTimeout(typeLoop, delay);
+      }
+
+      /* -------- 4. Add new phrase via DOM -------- */
+      addBtn.addEventListener("click", () => {
+        const text = newInput.value.trim();
+        if (text) {
+          phrases.splice(phraseIndex + 1, 0, text); // insert next
+          newInput.value = "";
+          newInput.focus();
+        }
+      });
+
+      /* -------- 5. Kick off typing -------- */
+      typeLoop();
+    </script>
+  </body>
+</html>

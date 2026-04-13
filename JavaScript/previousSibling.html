@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Traversal - previousSibling Example</title>
+
+    <style>
+      /* ===== Basic Styling ===== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        background-color: #f4f7fc;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px;
+      }
+
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+      }
+
+      .container {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        padding: 20px 30px;
+        width: 80%;
+        max-width: 600px;
+      }
+
+      p {
+        font-size: 18px;
+        color: #2c3e50;
+        padding: 10px 0;
+      }
+
+      button {
+        display: inline-block;
+        margin-bottom: 20px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 6px;
+        font-size: 15px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #2980b9;
+      }
+
+      #log {
+        margin-top: 20px;
+        background-color: #ecf0f1;
+        border-radius: 8px;
+        padding: 10px;
+        text-align: center;
+        color: #2c3e50;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Traversing the DOM using previousSibling</h1>
+
+    <div class="container">
+      <p id="p1">This is the first paragraph.</p>
+      <button id="button1">Update Previous Text</button>
+
+      <hr />
+
+      <p id="p2">This is the second paragraph.</p>
+      <button id="button2">Update Previous Text</button>
+    </div>
+
+    <div id="log">Open the console to see node type checks.</div>
+
+    <script>
+      //STEP 1: SELECT BUTTON ELEMENTS
+
+      const button1Element = document.getElementById("button1");
+      const button2Element = document.getElementById("button2");
+
+      //STEP 2: ACCESS PREVIOUS SIBLING NODES
+
+      const text1Element = button1Element.previousSibling;
+      const text2Element = button2Element.previousSibling;
+
+      console.log(" text1 previousSibling:", text1Element);
+      console.log(" text2 previousSibling:", text2Element);
+
+      //STEP 3: CHECK NODE TYPE
+
+      // Node type reference:
+      // 1 = Element node
+      // 3 = Text node
+      // 8 = Comment node
+
+      if (text1Element.nodeType === 3) {
+        text1Element.textContent = "Text 1 has been updated (via text node).";
+      }
+
+      if (text2Element.nodeType === 3) {
+        text2Element.textContent = "Text 2 has been changed (via text node).";
+      }
+
+      //STEP 4: INTERACTION (ON BUTTON CLICK)
+
+      button1Element.addEventListener("click", () => {
+        const prev = button1Element.previousSibling;
+        console.clear();
+        console.log("Clicked Button 1:");
+        console.log("Previous Sibling:", prev);
+        console.log("Node Type:", prev.nodeType);
+
+        if (prev.nodeType === 1) {
+          // Element node
+          prev.textContent = " Paragraph updated by Button 1!";
+          document.getElementById("log").textContent =
+            "Paragraph 1 updated via previousSibling!";
+        } else if (prev.nodeType === 3) {
+          // Text node (skip whitespace)
+          prev.nextSibling.textContent = " Paragraph updated by Button 1!";
+        }
+      });
+
+      button2Element.addEventListener("click", () => {
+        const prev = button2Element.previousSibling;
+        console.clear();
+        console.log("Clicked Button 2:");
+        console.log("Previous Sibling:", prev);
+        console.log("Node Type:", prev.nodeType);
+
+        if (prev.nodeType === 1) {
+          prev.textContent = " Paragraph updated by Button 2!";
+          document.getElementById("log").textContent =
+            "Paragraph 2 updated via previousSibling!";
+        } else if (prev.nodeType === 3) {
+          prev.nextSibling.textContent = " Paragraph updated by Button 2!";
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comparison Operators Demo</title>
+    <style>
+      body {
+        font-family: monospace;
+        background: #f0f4f8;
+        padding: 20px;
+      }
+      h2 {
+        color: #333;
+      }
+      .output {
+        background-color: #000;
+        color: #0f0;
+        padding: 15px;
+        border-radius: 10px;
+        white-space: pre-line;
+      }
+      .highlight {
+        color: #ff0;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>//Comparison Operators Demo</h2>
+    <p>
+      <span class="highlight">Open the console</span> or read the output below
+      to understand comparisons.
+    </p>
+    <div class="output" id="resultBox"></div>
+
+    <script>
+      //Comparison Operators
+
+      let numberOfApples = 10; // Number type
+      let numberOfOranges = "20"; // String type (looks like a number)
+
+      let output = "";
+
+      //== (Loose Equality)
+      //* Compares values after converting types if needed (type coercion)
+      let isEqual = numberOfApples == numberOfOranges;
+      output += "== : " + isEqual + "\n";
+
+      //=== (Strict Equality)
+      //* Compares values without converting types
+      let isStrictEqual = numberOfApples === numberOfOranges;
+      output += "=== : " + isStrictEqual + "\n";
+
+      //!= (Loose Inequality)
+      //* Checks if values are not equal, with type conversion
+      let isNotEqual = numberOfApples != numberOfOranges;
+      output += "!= : " + isNotEqual + "\n";
+
+      //!== (Strict Inequality)
+      //* Checks if values are not equal or types are different (no type conversion)
+      let isStrictlyNotEqual = numberOfApples !== numberOfOranges;
+      output += "!== : " + isStrictlyNotEqual + "\n";
+
+      //> (Greater Than)
+      let isGreaterThan = numberOfApples > numberOfOranges;
+      output += "> : " + isGreaterThan + "\n";
+
+      //< (Less Than)
+      let isLessThan = numberOfApples < numberOfOranges;
+      output += "< : " + isLessThan + "\n";
+
+      //>= (Greater Than or Equal To)
+      let isGreaterThanOrEqual = numberOfApples >= numberOfOranges;
+      output += ">= : " + isGreaterThanOrEqual + "\n";
+
+      //<= (Less Than or Equal To)
+      let isLessThanOrEqual = numberOfApples <= numberOfOranges;
+      output += "<= : " + isLessThanOrEqual + "\n";
+
+      //? Output to the screen
+      document.getElementById("resultBox").textContent = output;
+    </script>
+  </body>
+</html>

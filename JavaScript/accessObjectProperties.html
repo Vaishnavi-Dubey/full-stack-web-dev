@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accessing Object Properties – JavaScript</title>
+
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: #f5f8fc;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+      }
+
+      pre {
+        background: #1e1e1e;
+        color: #00ff88;
+        padding: 20px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 700px;
+        overflow-x: auto;
+        font-size: 14px;
+      }
+
+      #output {
+        background-color: #ecf0f1;
+        border-radius: 8px;
+        padding: 20px;
+        width: 90%;
+        max-width: 700px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>🧱 Accessing Object Properties</h1>
+    <p>Open your browser console to follow along with the detailed examples.</p>
+
+    <pre>
+// 1. Dot Notation  →  person.name
+// 2. Bracket Notation →  person["name"]
+// 3. Dynamic Property Access
+    </pre>
+
+    <div id="output">Running examples...</div>
+
+    <script>
+      console.log(" --- ACCESSING OBJECT PROPERTIES DEMO ---");
+
+      // OBJECT CREATION
+
+      const person = {
+        name: "Alice",
+        age: 25,
+        city: "New York",
+        hobby: "Coding",
+        courses: ["JavaScript", "Node.js", "HTML"],
+      };
+
+      console.log("Initial Person Object:", person);
+
+      // ACCESS USING DOT NOTATION
+
+      console.log("\ Accessing properties using DOT notation:");
+      const personName = person.name;
+      const personAge = person.age;
+      const personCity = person.city;
+      const personHobby = person.hobby;
+      const personCourses = person.courses;
+
+      console.log("Name:", personName);
+      console.log("Age:", personAge);
+      console.log("City:", personCity);
+      console.log("Hobby:", personHobby);
+      console.log("Courses:", personCourses);
+
+      //Accessing an array inside the object using index
+      console.log("First Course:", person.courses[0]);
+      console.log("Second Course:", person.courses[1]);
+
+      // ACCESS USING BRACKET NOTATION
+
+      console.log("\ Accessing properties using BRACKET notation:");
+      const hobbyUsingBracket = person["hobby"];
+      const cityUsingBracket = person["city"];
+      const firstCourse = person["courses"][0];
+
+      console.log("Hobby:", hobbyUsingBracket);
+      console.log("City:", cityUsingBracket);
+      console.log("First Course:", firstCourse);
+
+      // DYNAMIC PROPERTY ACCESS
+
+      console.log("\ Dynamic property access:");
+      const dynamicKey = "name"; // property name stored in a variable
+      const dynamicValue = person[dynamicKey];
+      console.log(
+        `Dynamic access using variable '${dynamicKey}':`,
+        dynamicValue
+      );
+
+      //DISPLAY RESULTS ON PAGE
+
+      const output = document.getElementById("output");
+      output.innerHTML = `
+        <h3> Object Property Access Summary</h3>
+        <ul>
+          <li><strong>Dot Notation:</strong> person.name → ${personName}</li>
+          <li><strong>Bracket Notation:</strong> person["city"] → ${cityUsingBracket}</li>
+          <li><strong>Dynamic Access:</strong> person[dynamicKey] → ${dynamicValue}</li>
+          <li><strong>Access Array Property:</strong> person.courses[0] → ${firstCourse}</li>
+        </ul>
+      `;
+
+      console.log(`
+ Key Takeaways:
+- Use DOT notation when you know the property name: person.name
+- Use BRACKET notation when property names are dynamic or contain spaces: person["first name"]
+- Bracket notation is required when keys come from variables.
+- You can access nested data (like arrays) using their index.
+`);
+
+      console.log(" --- END OF DEMO ---");
+    </script>
+  </body>
+</html>

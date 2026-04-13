@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landing Page</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Reset and box model */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(120deg, #1e3c72, #2a5298);
+        color: #fff;
+        line-height: 1.6;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px 10%;
+        background: rgba(0, 0, 0, 0.2);
+      }
+
+      .logo {
+        font-size: 28px;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      nav a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      nav a:hover {
+        color: #ffd700;
+      }
+
+      .hero {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 90vh;
+        text-align: center;
+        padding: 0 20px;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+        margin-bottom: 20px;
+        max-width: 700px;
+      }
+
+      .hero p {
+        font-size: 18px;
+        margin-bottom: 30px;
+        max-width: 600px;
+      }
+
+      .cta-button {
+        padding: 15px 35px;
+        background-color: #ffd700;
+        color: #000;
+        font-weight: bold;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        text-transform: uppercase;
+        transition: transform 0.3s ease;
+      }
+
+      .cta-button:hover {
+        transform: scale(1.1);
+      }
+
+      .features {
+        display: flex;
+        justify-content: space-around;
+        padding: 50px 10%;
+        background: #fff;
+        color: #000;
+        flex-wrap: wrap;
+      }
+
+      .feature {
+        flex: 1 1 250px;
+        margin: 20px;
+        padding: 20px;
+        background: #f0f0f0;
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .feature:hover {
+        transform: translateY(-10px);
+      }
+
+      .feature h3 {
+        margin-bottom: 10px;
+        font-size: 22px;
+      }
+
+      footer {
+        text-align: center;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.2);
+        color: #ccc;
+      }
+
+      @media screen and (max-width: 768px) {
+        .hero h1 {
+          font-size: 32px;
+        }
+
+        .features {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header>
+      <div class="logo">BrandName</div>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">Features</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <h1>Level Up Your Web Experience with Our Cool Product</h1>
+      <p>
+        Join thousands of users who are creating amazing websites with ease.
+        Fast, responsive, and beautiful.
+      </p>
+      <button class="cta-button">Get Started</button>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+      <div class="feature">
+        <h3>🚀 Fast Performance</h3>
+        <p>
+          Optimized for speed so your users never wait. Everything loads in a
+          flash!
+        </p>
+      </div>
+      <div class="feature">
+        <h3>🎨 Modern Design</h3>
+        <p>
+          Clean, elegant, and crafted to make your site look stunning across all
+          devices.
+        </p>
+      </div>
+      <div class="feature">
+        <h3>🔒 Secure by Default</h3>
+        <p>
+          Built with best practices to keep your data and users protected at all
+          times.
+        </p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>&copy; 2025 BrandName. All rights reserved.</footer>
+  </body>
+</html>

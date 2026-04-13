@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dynamic To-Do List</title>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background: #f4f7fa;
+        padding: 2rem;
+      }
+
+      h1 {
+        color: #2c3e50;
+      }
+
+      .todo-container {
+        background: #ffffff;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        max-width: 400px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      input[type="text"] {
+        padding: 0.5rem;
+        width: 70%;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+      }
+
+      button {
+        padding: 0.5rem 1rem;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        margin-left: 0.5rem;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #2980b9;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 1rem;
+      }
+
+      li {
+        background: #ecf0f1;
+        margin: 5px 0;
+        padding: 10px;
+        border-radius: 5px;
+        position: relative;
+      }
+
+      .delete-btn {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        background: #e74c3c;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 2px 6px;
+      }
+
+      .delete-btn:hover {
+        background: #c0392b;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="todo-container">
+      <h1>📝 To-Do List</h1>
+      <input type="text" id="todoInput" placeholder="Enter new task..." />
+      <button onclick="addTodo()">Add</button>
+
+      <ul id="todoList">
+        <!-- Tasks will appear here -->
+      </ul>
+    </div>
+
+    <script>
+      function addTodo() {
+        const input = document.getElementById("todoInput");
+        const task = input.value.trim();
+
+        if (task === "") {
+          alert("Please enter a task.");
+          return;
+        }
+
+        // Create <li> element
+        const li = document.createElement("li");
+        li.textContent = task;
+
+        // Create delete button
+        const delBtn = document.createElement("button");
+        delBtn.textContent = "❌";
+        delBtn.className = "delete-btn";
+        delBtn.onclick = () => li.remove();
+
+        // Append delete button to list item
+        li.appendChild(delBtn);
+
+        // Append list item to the UL
+        document.getElementById("todoList").appendChild(li);
+
+        // Clear the input field
+        input.value = "";
+      }
+    </script>
+  </body>
+</html>

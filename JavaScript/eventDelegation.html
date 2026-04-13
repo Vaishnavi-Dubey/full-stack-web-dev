@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Event Delegation</title>
+    <style>
+      #parent {
+        width: 300px;
+        padding: 20px;
+        border: 1px solid black;
+      }
+      #parent ul {
+        padding: 0;
+        margin: 0;
+      }
+      #parent li {
+        list-style: none;
+        padding: 10px;
+        border: 1px solid gray;
+        margin-bottom: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>Event Delegation Example</h3>
+
+    <div id="parent">
+      <ul id="item-list">
+        <li data-item="1">Item 1</li>
+        <li data-item="2">Item 2</li>
+        <li data-item="3">Item 3</li>
+      </ul>
+    </div>
+
+    <script>
+      // Add a single event listener to the UL
+      document
+        .getElementById("item-list")
+        .addEventListener("click", function (event) {
+          // Get the clicked element
+          const clickedElement = event.target;
+
+          // Check if clicked element is an LI
+          if (clickedElement.tagName === "LI") {
+            // Get item number from data-attribute
+            const itemNumber = clickedElement.getAttribute("data-item");
+
+            console.log("You clicked on item", itemNumber);
+          }
+        });
+    </script>
+  </body>
+</html>

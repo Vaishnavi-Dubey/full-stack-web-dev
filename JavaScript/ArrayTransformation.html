@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array Transformation in JavaScript</title>
+
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: #f7faff;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h1 {
+        color: #2c3e50;
+      }
+
+      pre {
+        background: #1e1e1e;
+        color: #00ff88;
+        padding: 20px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 750px;
+        overflow-x: auto;
+        font-size: 14px;
+      }
+
+      #output {
+        background-color: #ecf0f1;
+        border-radius: 8px;
+        padding: 20px;
+        width: 90%;
+        max-width: 750px;
+        margin-top: 25px;
+      }
+
+      ul {
+        list-style-type: square;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Array Transformation in JavaScript</h1>
+    <p>Check both the console and the browser for outputs and explanations.</p>
+
+    <pre>
+// Demonstrated Methods:
+//  forEach()
+//  map()
+//  reduce()
+//  find()
+//  filter()
+    </pre>
+
+    <div id="output">Running Array Transformation Demo...</div>
+
+    <script>
+      console.log(" --- ARRAY TRANSFORMATION DEMO START ---");
+
+      // forEach() — Iterate over an array (no return)
+
+      console.log("\ forEach()");
+      const numbers = [1, 2, 3, 4];
+      console.log("Original Array:", numbers);
+
+      console.log("Doubled values (side effect using forEach):");
+      numbers.forEach((num) => {
+        console.log(num * 2);
+      });
+
+      // map() — Transform and RETURN new array
+
+      console.log("\ map()");
+      const doubled = numbers.map((num) => num * 2);
+      console.log("Original:", numbers);
+      console.log("New (Doubled):", doubled);
+
+      //Array of objects example for map()
+      const products = [
+        { name: "Laptop", price: 1000, stock: 5 },
+        { name: "Phone", price: 500, stock: 10 },
+        { name: "Tablet", price: 300, stock: 3 },
+      ];
+
+      console.log("\nOriginal Products:", products);
+
+      const discountedProducts = products.map((product) => {
+        return {
+          name: product.name,
+          price: product.price * 0.9, // 10% discount
+          stock: product.stock,
+        };
+      });
+
+      console.log("Discounted Products (10% off):", discountedProducts);
+
+      // reduce() — Reduce array to a single value
+
+      console.log("\ reduce()");
+      const numbers2 = [1, 2, 3, 4, 5, 6];
+
+      const totalSum = numbers2.reduce((acc, current) => {
+        return acc + current;
+      }, 0);
+
+      console.log("Sum of numbers:", totalSum);
+
+      //Calculate total inventory value (stock * price)
+      const totalInventoryValue = products.reduce((acc, product) => {
+        return acc + product.stock * product.price;
+      }, 0);
+
+      console.log("Total Inventory Value:", totalInventoryValue);
+
+      // find() — Find first element that matches a condition
+
+      console.log("\ find()");
+      const numbers3 = [1, 2, 3, 4, 5, 6];
+      const foundNumber = numbers3.find((num) => num > 3);
+      console.log("First number greater than 3:", foundNumber);
+
+      // filter() — Return all elements matching a condition
+
+      console.log("\ filter()");
+      const filteredNumbers = numbers3.filter((num) => num > 3);
+      console.log("All numbers greater than 3:", filteredNumbers);
+
+      // DISPLAY RESULTS IN THE BROWSER
+
+      const output = document.getElementById("output");
+      output.innerHTML = `
+        <h3> Array Transformation Summary</h3>
+        <ul>
+          <li><strong>forEach:</strong> Loops through elements (no return)</li>
+          <li><strong>map:</strong> Creates new array → ${doubled.join(
+            ", "
+          )}</li>
+          <li><strong>reduce:</strong> Sum of [${numbers2.join(
+            ", "
+          )}] = ${totalSum}</li>
+          <li><strong>find:</strong> First number > 3 → ${foundNumber}</li>
+          <li><strong>filter:</strong> All numbers > 3 → ${filteredNumbers.join(
+            ", "
+          )}</li>
+          <li><strong>Total Inventory Value:</strong> $${totalInventoryValue}</li>
+        </ul>
+      `;
+
+      // SUMMARY LOG
+
+      console.log(`
+ Key Takeaways:
+
+ forEach():
+   → Iterates through each element.
+   → Does NOT return a new array.
+   → Commonly used for logging or side effects.
+
+ map():
+   → Returns a NEW array.
+   → Each element transformed using a callback.
+   → Great for modifying or reformatting data.
+
+ reduce():
+   → Combines array elements into a single result (sum, product, etc.).
+   → Syntax: arr.reduce((acc, curr) => ..., initialValue)
+
+ find():
+   → Returns the FIRST element that matches a condition.
+
+ filter():
+   → Returns ALL elements matching a condition.
+
+ map + filter + reduce = the power trio of functional programming in JavaScript.
+`);
+
+      console.log(" --- END OF ARRAY TRANSFORMATION DEMO ---");
+    </script>
+  </body>
+</html>

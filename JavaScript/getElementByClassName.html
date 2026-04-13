@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>getElementsByClassName Example</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 2rem;
+      }
+
+      .book {
+        padding: 10px;
+        margin-bottom: 8px;
+        border-left: 4px solid #444;
+      }
+
+      .fiction {
+        background-color: #ffe4e1;
+        border-left-color: #ff6f61;
+      }
+
+      .non-fiction {
+        background-color: #e0f7fa;
+        border-left-color: #00796b;
+      }
+
+      h2 {
+        margin-top: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Bookshelf</h1>
+
+    <div class="book fiction">The Hobbit</div>
+    <div class="book fiction">Harry Potter</div>
+    <div class="book fiction">The Great Gatsby</div>
+
+    <h2>Non-Fiction Section</h2>
+    <div id="nonFictionSection">
+      <div class="book non-fiction">Sapiens</div>
+      <div class="book non-fiction">Educated</div>
+      <div class="book non-fiction">The Immortal Life of Henrietta Lacks</div>
+    </div>
+
+    <script>
+      // Selecting all elements with the class name "fiction"
+      const fictionBooksEl = document.getElementsByClassName("fiction");
+
+      // Selecting all elements with the class name "non-fiction" within the nonFiction section
+      const nonFictionEl = document.getElementById("nonFictionSection");
+      const nonFictionBooksInSectionEl =
+        nonFictionEl.getElementsByClassName("non-fiction");
+
+      // Log the entire HTMLCollection
+      console.log("Fiction Book Elements:", fictionBooksEl);
+      console.log(
+        "Non-Fiction Elements in Section:",
+        nonFictionBooksInSectionEl
+      );
+
+      // Convert HTMLCollection to Array and extract innerHTML
+      const fictionBooksElArr = Array.from(fictionBooksEl);
+      const fictionBooksElTitle = fictionBooksElArr.map((el) => el.innerHTML);
+
+      // Log the list of fiction book titles
+      console.log("Fiction Book Titles:", fictionBooksElTitle);
+    </script>
+  </body>
+</html>

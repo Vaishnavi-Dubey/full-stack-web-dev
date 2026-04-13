@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tip Calculator DOM Project</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 20px;
+        backdrop-filter: blur(12px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        padding: 30px 40px;
+        width: 350px;
+        text-align: center;
+        color: #fff;
+        animation: fadeIn 1s ease;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+        font-size: 28px;
+      }
+
+      .input-group {
+        margin-bottom: 20px;
+        text-align: left;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 14px;
+      }
+
+      input {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.2);
+        color: #fff;
+        font-size: 16px;
+        outline: none;
+      }
+
+      input::placeholder {
+        color: #eee;
+      }
+
+      button {
+        padding: 12px 25px;
+        border: none;
+        background: #ff9472;
+        color: #fff;
+        font-size: 16px;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+
+      button:hover {
+        background: #f2709c;
+      }
+
+      .result {
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3);
+        font-size: 18px;
+        animation: slideIn 0.4s ease;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>💸 Tip Calculator</h1>
+
+      <div class="input-group">
+        <label for="bill">Bill Amount (₹)</label>
+        <input type="number" id="bill" placeholder="Enter bill amount" />
+      </div>
+
+      <div class="input-group">
+        <label for="tip">Tip Percentage (%)</label>
+        <input type="number" id="tip" placeholder="Enter tip %" />
+      </div>
+
+      <div class="input-group">
+        <label for="people">Number of People</label>
+        <input type="number" id="people" placeholder="Enter no. of people" />
+      </div>
+
+      <button onclick="calculateTip()">🧮 Calculate</button>
+
+      <div id="result" class="result hidden"></div>
+    </div>
+
+    <script>
+      function calculateTip() {
+        const bill = parseFloat(document.getElementById("bill").value);
+        const tip = parseFloat(document.getElementById("tip").value);
+        const people = parseInt(document.getElementById("people").value);
+        const resultBox = document.getElementById("result");
+
+        if (
+          isNaN(bill) ||
+          isNaN(tip) ||
+          isNaN(people) ||
+          bill <= 0 ||
+          tip < 0 ||
+          people <= 0
+        ) {
+          resultBox.innerHTML = "⚠️ Please enter valid values.";
+          resultBox.classList.remove("hidden");
+          resultBox.style.color = "#ffdddd";
+          return;
+        }
+
+        const tipAmount = (bill * tip) / 100;
+        const total = bill + tipAmount;
+        const perPerson = total / people;
+
+        resultBox.innerHTML = `
+        💰 Tip: ₹${tipAmount.toFixed(2)}<br>
+        🧾 Total: ₹${total.toFixed(2)}<br>
+        👥 Per Person: ₹${perPerson.toFixed(2)}
+      `;
+        resultBox.classList.remove("hidden");
+        resultBox.style.color = "#fff";
+      }
+    </script>
+  </body>
+</html>

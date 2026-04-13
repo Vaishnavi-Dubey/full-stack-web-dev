@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Descendant Selector Example</title>
+
+    <style>
+      /* 
+      Descendant selector targets elements that are nested inside 
+      a specific parent element (not necessarily direct children).
+      Syntax: parent descendant { styles }
+    */
+
+      /* Example: All <p> elements inside <div> will have blue color */
+      div p {
+        color: blue;
+        font-family: Arial, sans-serif;
+      }
+
+      /* Example: <em> elements inside <section> will be italic and green */
+      section em {
+        color: green;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Descendant Selector Example</h1>
+    <hr />
+
+    <!-- Parent div -->
+    <div>
+      <p>This paragraph is inside a div, so it will be styled blue.</p>
+
+      <!-- Nested structure -->
+      <div>
+        <p>This nested paragraph is also inside a div — still matches!</p>
+      </div>
+    </div>
+
+    <!-- This paragraph is outside of any div, so no CSS rule will apply -->
+    <p>This paragraph is outside of div — it will use default styles.</p>
+
+    <!-- Section with <em> tag inside -->
+    <section>
+      <p>
+        Some regular text.
+        <em>This text is emphasized and inside a section.</em>
+      </p>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Manipulation – Text Manipulation</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        background-color: #f4f7fc;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px;
+      }
+
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+      }
+
+      #container {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        width: 90%;
+        max-width: 700px;
+      }
+
+      .section {
+        margin-bottom: 30px;
+      }
+
+      #title {
+        background-color: #ddd;
+        padding: 10px;
+        text-align: center;
+        border-radius: 8px;
+      }
+
+      #content {
+        margin-top: 15px;
+        padding: 10px;
+        line-height: 1.5;
+        background-color: #f0f0f0;
+        border-radius: 5px;
+      }
+
+      .comments {
+        background-color: #fefefe;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 10px;
+      }
+
+      .comment {
+        margin-bottom: 10px;
+      }
+
+      .comment-text {
+        display: inline-block;
+        padding-left: 10px;
+      }
+
+      #log {
+        margin-top: 20px;
+        background-color: #ecf0f1;
+        border-radius: 8px;
+        padding: 10px;
+        text-align: center;
+        color: #2c3e50;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>🧠 DOM Manipulation – Text Manipulation</h1>
+
+    <div id="container">
+      <div class="section">
+        <h2 id="title">Old Blog Title</h2>
+      </div>
+
+      <div class="section" id="content">
+        <p id="paragraph">This is the original blog paragraph.</p>
+      </div>
+
+      <div class="section comments">
+        <h3>💬 Comments</h3>
+        <div id="comment1" class="comment">
+          <strong>User1:</strong>
+          <span class="comment-text">This is a good post.</span>
+        </div>
+        <div id="comment2" class="comment">
+          <strong>User2:</strong>
+          <span class="comment-text">Thanks for sharing!</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="log">Open console to see detailed logs.</div>
+
+    <script>
+      //TEXTCONTENT EXAMPLE (Plain Text)
+
+      const blogTitleElement = document.getElementById("title");
+      console.log("🎯 Selected Blog Title:", blogTitleElement.textContent);
+
+      // Update title text using textContent
+      blogTitleElement.textContent = "New Blog Title";
+      console.log("✅ Updated Blog Title:", blogTitleElement.textContent);
+
+      // Change background and color dynamically using .style
+      blogTitleElement.style.backgroundColor = "red";
+      blogTitleElement.style.color = "white";
+
+      //INNERHTML EXAMPLE (With HTML content)
+
+      const paragraphElement = document.getElementById("paragraph");
+      console.log("📖 Original Paragraph:", paragraphElement.innerHTML);
+
+      // Replace the paragraph with new HTML
+      paragraphElement.innerHTML = "<h3>✨ I have changed the paragraph!</h3>";
+
+      // Append more content dynamically (with formatting)
+      paragraphElement.innerHTML +=
+        "<br><strong>This is a new paragraph text with <em>strong</em> formatting.</strong>";
+
+      console.log("✅ Updated Paragraph:", paragraphElement.innerHTML);
+
+      //INNERTEXT EXAMPLE (Visible Text Only)
+
+      const firstCommentElement = document
+        .getElementById("comment1")
+        .querySelector(".comment-text");
+
+      console.log("💬 Original Comment Text:", firstCommentElement.innerText);
+
+      // Modify the visible text only
+      firstCommentElement.innerText = "Updated first comment!";
+
+      console.log("✅ Updated Comment Text:", firstCommentElement.innerText);
+
+      //LOG RESULTS TO PAGE
+
+      const logDiv = document.getElementById("log");
+      logDiv.innerHTML = `
+        <strong>Updated Elements:</strong><br>
+        📝 Blog Title: "${blogTitleElement.textContent}"<br>
+        📄 Paragraph: "${paragraphElement.textContent.slice(0, 40)}..."<br>
+        💬 First Comment: "${firstCommentElement.innerText}"
+      `;
+    </script>
+  </body>
+</html>

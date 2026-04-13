@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript ES6 – Destructuring</title>
+
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: #f4f7fc;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+      }
+
+      pre {
+        background: #1e1e1e;
+        color: #00ff88;
+        padding: 20px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 700px;
+        overflow-x: auto;
+        font-size: 14px;
+      }
+
+      #output {
+        background: #ecf0f1;
+        border-radius: 8px;
+        padding: 15px;
+        width: 90%;
+        max-width: 700px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>JavaScript ES6 – Destructuring</h1>
+
+    <p>Open the console to follow step-by-step examples.</p>
+
+    <pre>
+// Examples included:
+// 1. Array destructuring
+// 2. Swapping variables
+// 3. Object destructuring
+// 4. Function parameter destructuring
+// 5. Nested destructuring
+// 6. Default values & aliasing
+    </pre>
+
+    <div id="output">Running destructuring examples...</div>
+
+    <script>
+      console.log(" --- DESTRUCTURING IN JAVASCRIPT ES6 ---");
+
+      // ARRAY DESTRUCTURING
+
+      const numbers = [1, 2, 3, 4];
+      const [first, second, third, fourth] = numbers;
+
+      console.log("Array Destructuring:");
+      console.log("First:", first);
+      console.log("Second:", second);
+      console.log("Third:", third);
+      console.log("Fourth:", fourth);
+
+      //Compare with traditional indexing
+      console.log("Traditional way → numbers[1]:", numbers[1]);
+
+      // SWAPPING VARIABLES USING DESTRUCTURING
+
+      let a = 1;
+      let b = 2;
+      console.log("\nBefore swap:", a, b);
+      [a, b] = [b, a];
+      console.log("After swap:", a, b);
+
+      // OBJECT DESTRUCTURING
+
+      const user = {
+        name: "MySyntek",
+        age: 10,
+        email: "support@mysyntek.com",
+      };
+
+      console.log("\nUser Object:", user);
+
+      // Destructure the properties
+      const { name, age, email } = user;
+      console.log("Name:", name);
+      console.log("Age:", age);
+      console.log("Email:", email);
+
+      // FUNCTION PARAMETER DESTRUCTURING
+
+      function greetUser({ name, age }) {
+        console.log(`\nHello ${name}, your age is ${age}.`);
+      }
+
+      greetUser(user);
+
+      // NESTED OBJECT DESTRUCTURING
+
+      const userData = {
+        id: 1,
+        info: {
+          name: "John Doe",
+          age: 25,
+          contact: {
+            phone: "1234567890",
+            city: "New York",
+          },
+        },
+      };
+
+      // Destructure nested properties
+      const {
+        id,
+        info: {
+          name: userName,
+          age: userAge,
+          contact: { phone, city },
+        },
+      } = userData;
+
+      console.log("\nNested Destructuring:");
+      console.log("ID:", id);
+      console.log("Name:", userName);
+      console.log("Age:", userAge);
+      console.log("Phone:", phone);
+      console.log("City:", city);
+
+      // DEFAULT VALUES & ALIASING
+
+      const person = {
+        firstName: "Alice",
+        country: "Canada",
+      };
+
+      // Aliasing and default value
+      const { firstName: fName, lastName = "Unknown", country } = person;
+      console.log("\nDefault Values & Aliasing:");
+      console.log("First Name (alias):", fName);
+      console.log("Last Name (default):", lastName);
+      console.log("Country:", country);
+
+      //LOG RESULTS TO PAGE
+
+      const output = document.getElementById("output");
+      output.innerHTML = `
+        <h3> Destructuring Summary</h3>
+        <ul>
+          <li><strong>Array Destructuring:</strong> [first, second] = [1, 2]</li>
+          <li><strong>Variable Swap:</strong> [a, b] = [b, a]</li>
+          <li><strong>Object Destructuring:</strong> { name, age } = user</li>
+          <li><strong>Function Params:</strong> function greet({ name }) { ... }</li>
+          <li><strong>Nested Destructuring:</strong> const { info: { name } } = obj</li>
+          <li><strong>Default Values:</strong> const { lastName = 'N/A' }</li>
+          <li><strong>Aliasing:</strong> const { name: userName }</li>
+        </ul>
+      `;
+
+      console.log(`
+ Key Takeaways:
+- Destructuring unpacks arrays/objects into variables easily.
+- Works great for function parameters and nested data.
+- You can assign default values and rename variables using aliasing.
+- Does not modify the original object or array.
+- Very common in React (component props, useState, etc.).
+`);
+
+      console.log(" --- END OF DESTRUCTURING DEMO ---");
+    </script>
+  </body>
+</html>

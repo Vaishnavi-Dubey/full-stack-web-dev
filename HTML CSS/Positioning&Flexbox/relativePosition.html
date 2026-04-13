@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CSS Relative Positioning</title>
+    <style>
+      /* Container for reference */
+      .container {
+        width: 500px;
+        border: 2px solid #333;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        font-family: Arial, sans-serif;
+      }
+
+      /* Normally positioned box */
+      .normal-box {
+        background-color: #d0e7ff;
+        padding: 15px;
+        margin-bottom: 15px;
+        border: 1px solid #2a6fdb;
+      }
+
+      /* Relative positioned box */
+      .relative-box {
+        position: relative; /* Enables offset positioning */
+        top: 20px; /* Moves the element 20px down from its normal position */
+        left: 30px; /* Moves the element 30px right from its normal position */
+        background-color: #ffe0b2;
+        padding: 15px;
+        border: 1px solid #db8b2a;
+        margin-bottom: 15px;
+      }
+
+      /* Another box to demonstrate layout effect */
+      .next-box {
+        background-color: #c8e6c9;
+        padding: 15px;
+        border: 1px solid #2a7d2a;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="text-align: center">CSS Relative Positioning</h1>
+
+    <div class="container">
+      <!-- Normal box: no positioning applied -->
+      <div class="normal-box">
+        <strong>Normal Positioning (static by default):</strong><br />
+        This box is in the normal document flow. No offset applied.
+      </div>
+
+      <!-- Relative positioned box -->
+      <div class="relative-box">
+        <strong>Relative Positioning:</strong><br />
+        This element is positioned relative to its normal position. The
+        <code>top: 20px;</code> and <code>left: 30px;</code> move it down and
+        right respectively.
+        <br />
+        <em>Important:</em> The space the element originally occupied remains
+        reserved, so other elements behave as if it is still in the original
+        position.
+      </div>
+
+      <!-- Next box to show layout effect -->
+      <div class="next-box">
+        <strong>Next Element:</strong><br />
+        This box appears as if the relative box had not moved, because relative
+        positioning offsets the element visually but does not affect the normal
+        document flow.
+      </div>
+    </div>
+  </body>
+</html>

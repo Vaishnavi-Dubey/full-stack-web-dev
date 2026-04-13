@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Add & Remove Fruits</title>
+
+    <style>
+      /* Basic styling */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        background-color: #f2f6ff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px;
+      }
+
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+      }
+
+      .container {
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 500px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 15px;
+      }
+
+      li.fruit {
+        background-color: #ecf0f1;
+        padding: 10px 15px;
+        margin-bottom: 8px;
+        border-radius: 8px;
+        border-left: 5px solid #3498db;
+        transition: background-color 0.3s;
+      }
+
+      li.fruit:hover {
+        background-color: #d6eaf8;
+      }
+
+      .controls {
+        display: flex;
+        gap: 8px;
+        margin-top: 15px;
+      }
+
+      input[type="text"] {
+        flex: 1;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #bdc3c7;
+      }
+
+      button {
+        padding: 10px 18px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #2980b9;
+      }
+
+      #message {
+        margin-top: 15px;
+        background-color: #f4f6f8;
+        border-radius: 8px;
+        padding: 10px;
+        text-align: center;
+        font-size: 15px;
+        color: #2c3e50;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>DOM Manipulation – Add & Remove Fruits</h1>
+
+    <div class="container">
+      <!-- Unordered list to hold fruit items -->
+      <ul id="fruitList"></ul>
+
+      <!-- Controls for adding/removing fruits -->
+      <div class="controls">
+        <input
+          type="text"
+          id="fruitInput"
+          placeholder="Enter fruit name (e.g. Apple)"
+        />
+        <button id="addBtn">Add Fruit</button>
+        <button id="removeBtn">Remove Fruit</button>
+      </div>
+
+      <!-- Message display -->
+      <div id="message">Waiting for your action...</div>
+    </div>
+
+    <script>
+      //DOM ELEMENT SELECTION
+
+      const ulElement = document.getElementById("fruitList");
+      const fruitInput = document.getElementById("fruitInput");
+      const message = document.getElementById("message");
+      const addBtn = document.getElementById("addBtn");
+      const removeBtn = document.getElementById("removeBtn");
+
+      //FUNCTION: ADD FRUIT
+
+      function addFruit(fruitName) {
+        // If no name provided, show warning
+        if (!fruitName) {
+          message.textContent = " Please enter a fruit name.";
+          return;
+        }
+
+        // Create new <li> element
+        const li = document.createElement("li");
+        li.className = "fruit"; // add styling class
+        li.textContent = fruitName; // set fruit name text
+
+        // Append to UL
+        ulElement.appendChild(li);
+
+        // Update message
+        message.textContent = `${fruitName} was added to the list.`;
+
+        // Log for debugging
+        console.log("Added:", li);
+      }
+
+      //FUNCTION: REMOVE FRUIT
+
+      function removeFruit(fruitName) {
+        if (!fruitName) {
+          message.textContent = " Please enter a fruit name to remove.";
+          return;
+        }
+
+        // Flag to check if fruit found
+        let fruitFound = false;
+
+        // Loop through all <li> children
+        for (const li of ulElement.children) {
+          if (li.textContent.toLowerCase() === fruitName.toLowerCase()) {
+            // If found, remove it
+            ulElement.removeChild(li);
+            fruitFound = true;
+            break;
+          }
+        }
+
+        // Update message based on result
+        message.textContent = fruitFound
+          ? `${fruitName} was removed from the list.`
+          : `${fruitName} not found in the list.`;
+
+        console.log(
+          fruitFound ? "Removed:" : "Not found:",
+          fruitName,
+          ulElement.children
+        );
+      }
+
+      //EVENT LISTENERS
+
+      // Add fruit on button click
+      addBtn.addEventListener("click", () => {
+        const fruitName = fruitInput.value.trim();
+        addFruit(fruitName);
+        fruitInput.value = ""; // clear input
+        fruitInput.focus();
+      });
+
+      // Remove fruit on button click
+      removeBtn.addEventListener("click", () => {
+        const fruitName = fruitInput.value.trim();
+        removeFruit(fruitName);
+        fruitInput.value = "";
+        fruitInput.focus();
+      });
+
+      //INITIAL DEMO DATA (OPTIONAL)
+
+      addFruit("Apple");
+      addFruit("Banana");
+      addFruit("Cherry");
+    </script>
+  </body>
+</html>

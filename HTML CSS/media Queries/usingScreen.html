@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Media Queries with Screen</title>
+    <style>
+      /* ===============================
+       BASE STYLES (Applies to all screens)
+       =============================== */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        color: #333;
+      }
+
+      header {
+        background-color: #0066cc;
+        color: white;
+        text-align: center;
+        padding: 40px 0;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        display: flex;
+        gap: 20px;
+      }
+
+      .box {
+        flex: 1;
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      /* ===============================
+       MEDIA QUERY: Tablets (max-width: 992px)
+       =============================== */
+      @media screen and (max-width: 992px) {
+        .container {
+          flex-direction: column;
+          padding: 10px;
+        }
+
+        .box {
+          font-size: 16px;
+        }
+      }
+
+      /* ===============================
+       MEDIA QUERY: Phones (max-width: 600px)
+       =============================== */
+      @media screen and (max-width: 600px) {
+        header {
+          padding: 20px 0;
+          font-size: 20px;
+        }
+
+        .box {
+          padding: 15px;
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header>
+      <h1>Responsive Layout Using Media Queries</h1>
+    </header>
+
+    <!-- Content Boxes -->
+    <div class="container">
+      <div class="box">
+        <h2>Box 1</h2>
+        <p>
+          This box adapts based on screen size using
+          <code>@media screen</code> queries.
+        </p>
+      </div>
+      <div class="box">
+        <h2>Box 2</h2>
+        <p>
+          Resize the browser to see the layout change from horizontal to
+          vertical.
+        </p>
+      </div>
+      <div class="box">
+        <h2>Box 3</h2>
+        <p>Font size, padding, and direction are all responsive.</p>
+      </div>
+    </div>
+  </body>
+</html>

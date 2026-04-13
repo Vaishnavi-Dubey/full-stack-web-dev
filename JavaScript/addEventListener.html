@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Event Listener Demo</title>
+    <style>
+      /* General page setup */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        background-color: #f4f7fc;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+      }
+
+      .section {
+        background: white;
+        padding: 25px 30px;
+        margin: 15px 0;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        max-width: 500px;
+      }
+
+      .section h2 {
+        color: #34495e;
+        font-size: 20px;
+        margin-bottom: 15px;
+        border-bottom: 2px solid #3498db;
+        padding-bottom: 8px;
+      }
+
+      button {
+        margin: 5px;
+        padding: 10px 20px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 15px;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #2980b9;
+      }
+
+      .hover-box {
+        margin-top: 10px;
+        padding: 15px;
+        background-color: #ecf0f1;
+        border: 2px dashed #95a5a6;
+        border-radius: 10px;
+        text-align: center;
+        transition: background-color 0.3s;
+      }
+
+      .hover-box.active {
+        background-color: #ffeaa7;
+        border-color: #f39c12;
+      }
+
+      input[type="text"] {
+        padding: 8px 12px;
+        width: 100%;
+        margin-top: 8px;
+        font-size: 15px;
+        border-radius: 6px;
+        border: 1px solid #bdc3c7;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .log {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #555;
+        background-color: #f4f6f8;
+        padding: 10px;
+        border-radius: 8px;
+        min-height: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>addEventListener() - Modern DOM Event Handling</h1>
+
+    <!-- MOUSE EVENTS SECTION -->
+    <div class="section">
+      <h2>Mouse Events</h2>
+      <button id="clickBtn">Click Me!</button>
+      <button id="dblClickBtn">Double Click Me!</button>
+      <div id="hoverBox" class="hover-box">Hover Over Me!</div>
+      <div id="mouseLog" class="log">Mouse log will appear here...</div>
+    </div>
+
+    <!-- KEYBOARD EVENTS SECTION -->
+    <div class="section">
+      <h2>Keyboard Events</h2>
+      <input id="keyInput" type="text" placeholder="Type something here..." />
+      <div id="keyLog" class="log">Keyboard log will appear here...</div>
+    </div>
+
+    <!-- FORM EVENTS SECTION -->
+    <div class="section">
+      <h2>Form Events</h2>
+      <form id="sampleForm">
+        <input
+          id="formInput"
+          type="text"
+          placeholder="Enter your name here..."
+        />
+        <button type="submit">Submit</button>
+      </form>
+      <div id="formLog" class="log">Form log will appear here...</div>
+    </div>
+
+    <script>
+      /*
+         DOM ELEMENT SELECTION
+     */
+      const clickBtn = document.getElementById("clickBtn");
+      const dblClickBtn = document.getElementById("dblClickBtn");
+      const hoverBox = document.getElementById("hoverBox");
+      const mouseLog = document.getElementById("mouseLog");
+
+      const keyInput = document.getElementById("keyInput");
+      const keyLog = document.getElementById("keyLog");
+
+      const sampleForm = document.getElementById("sampleForm");
+      const formInput = document.getElementById("formInput");
+      const formLog = document.getElementById("formLog");
+
+      //MOUSE EVENTS
+
+      // Click Event
+      clickBtn.addEventListener("click", function () {
+        console.log("Click event triggered");
+        mouseLog.textContent = "Click event fired!";
+        console.log("`this` keyword refers to:", this); // refers to button
+      });
+
+      // Double Click Event
+      dblClickBtn.addEventListener("dblclick", (e) => {
+        console.log("Double Click event triggered");
+        mouseLog.textContent = "Double Click event fired!";
+        console.log("In arrow function, `this` points to:", this); // window/global
+        console.log("Event object:", e);
+      });
+
+      // Mouse Over
+      hoverBox.addEventListener("mouseover", function () {
+        console.log("Mouse Over event triggered");
+        hoverBox.classList.add("active");
+        mouseLog.textContent = "Mouse entered hover box!";
+      });
+
+      // Mouse Out
+      hoverBox.addEventListener("mouseout", function () {
+        console.log("Mouse Out event triggered");
+        hoverBox.classList.remove("active");
+        mouseLog.textContent = "Mouse left hover box!";
+      });
+
+      //KEYBOARD EVENTS
+
+      // Key Down
+      keyInput.addEventListener("keydown", (e) => {
+        console.log("Key Down:", e.key);
+        keyLog.textContent = `Key Down: ${e.key}`;
+      });
+
+      // Key Up
+      keyInput.addEventListener("keyup", (e) => {
+        console.log("Key Up:", e.key);
+        keyLog.textContent = `Key Up: ${e.key}`;
+      });
+
+      // Key Press (deprecated, shown for learning)
+      keyInput.addEventListener("keypress", (e) => {
+        console.log("Key Press:", e.key);
+        keyLog.textContent = `Key Press: ${e.key}`;
+      });
+
+      //FORM EVENTS
+
+      // Submit Event
+      sampleForm.addEventListener("submit", function (e) {
+        e.preventDefault(); // Prevent page reload
+        console.log("Form submitted!");
+        formLog.textContent = `Form submitted with: ${formInput.value}`;
+      });
+
+      // Focus Event
+      formInput.addEventListener("focus", function () {
+        console.log("Input Focused");
+        formLog.textContent = "Input field focused!";
+      });
+
+      // Blur Event
+      formInput.addEventListener("blur", function () {
+        console.log("Input Lost Focus");
+        formLog.textContent = "Input field lost focus!";
+      });
+
+      //EXTRA: MULTIPLE HANDLERS
+
+      // You can attach multiple event listeners of the same type
+      clickBtn.addEventListener("click", function () {
+        console.log("Another click listener attached!");
+      });
+
+      //EXTRA: EVENT OBJECT INFO
+
+      dblClickBtn.addEventListener("click", (e) => {
+        console.log("Event Type:", e.type);
+        console.log("Target Element:", e.target);
+        console.log("Mouse Coordinates:", e.clientX, e.clientY);
+      });
+    </script>
+  </body>
+</html>

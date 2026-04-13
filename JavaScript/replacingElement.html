@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Replace Child Example</title>
+
+    <style>
+      /* ===== Basic Styling ===== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        background-color: #f4f7fc;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px;
+      }
+
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 25px;
+      }
+
+      .container {
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        max-width: 700px;
+      }
+
+      .article {
+        padding: 15px;
+        margin-bottom: 12px;
+        border: 2px solid #3498db;
+        border-radius: 10px;
+        background-color: #ecf0f1;
+        transition: background-color 0.3s ease;
+      }
+
+      .article:hover {
+        background-color: #d6eaf8;
+      }
+
+      .controls {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      input {
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #bdc3c7;
+        flex: 1;
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #2980b9;
+      }
+
+      #log {
+        margin-top: 15px;
+        background-color: #f4f6f8;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 15px;
+        color: #2c3e50;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>DOM Manipulation – Replacing Elements</h1>
+
+    <div class="container">
+      <!-- Existing Articles -->
+      <div id="article1" class="article">Article 1: Introduction to HTML</div>
+      <div id="article2" class="article">Article 2: CSS Basics</div>
+      <div id="article3" class="article">Article 3: JavaScript Overview</div>
+
+      <!-- Controls -->
+      <div class="controls">
+        <input
+          type="text"
+          id="articleId"
+          placeholder="Enter article ID (e.g. article2)"
+        />
+        <input type="text" id="newContent" placeholder="Enter new content" />
+        <button id="replaceBtn">Replace</button>
+      </div>
+
+      <!-- Log Area -->
+      <div id="log">Result message will appear here...</div>
+    </div>
+
+    <script>
+      //DOM SELECTION
+
+      const replaceBtn = document.getElementById("replaceBtn");
+      const articleIdInput = document.getElementById("articleId");
+      const newContentInput = document.getElementById("newContent");
+      const log = document.getElementById("log");
+
+      //FUNCTION: Replace an Article
+
+      /**
+       * Replaces an existing article (child) with a new one.
+       * @param {string} articleId - ID of the existing article to replace.
+       * @param {string} newContent - The new text content to display.
+       */
+      function replaceArticle(articleId, newContent) {
+        // Step 1: Find existing article by ID
+        const existingArticle = document.getElementById(articleId);
+
+        if (!existingArticle) {
+          log.textContent = `❌ No article found with ID "${articleId}".`;
+          console.warn("Article not found:", articleId);
+          return;
+        }
+
+        // Step 2: Create new <div> for the updated article
+        const newArticle = document.createElement("div");
+        newArticle.className = "article";
+        newArticle.id = articleId; // keep the same ID
+        // Step 3: Create text node for new content
+        const newTextNode = document.createTextNode(newContent);
+        newArticle.appendChild(newTextNode);
+
+        // Step 4: Replace the old article with the new one
+        // Access parent node, then use replaceChild(newNode, oldNode)
+        existingArticle.parentNode.replaceChild(newArticle, existingArticle);
+
+        // Step 5: Feedback
+        log.textContent = `✅ Replaced ${articleId} with new content: "${newContent}"`;
+        console.log("Replaced:", existingArticle, "→", newArticle);
+      }
+
+      //EVENT LISTENER FOR BUTTON
+
+      replaceBtn.addEventListener("click", () => {
+        const id = articleIdInput.value.trim();
+        const content = newContentInput.value.trim();
+
+        if (!id || !content) {
+          log.textContent =
+            "⚠️ Please enter both an article ID and new content.";
+          return;
+        }
+
+        replaceArticle(id, content);
+        articleIdInput.value = "";
+        newContentInput.value = "";
+      });
+
+      //INITIAL DEMONSTRATION
+
+      console.log("✅ Page loaded. Try replacing article2, for example!");
+    </script>
+  </body>
+</html>

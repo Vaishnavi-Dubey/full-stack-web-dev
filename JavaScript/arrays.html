@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Data Structures – Arrays</title>
+
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: #f7fafc;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+      }
+
+      pre {
+        background: #1e1e1e;
+        color: #00ff88;
+        padding: 20px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 750px;
+        overflow-x: auto;
+        font-size: 14px;
+      }
+
+      #output {
+        background-color: #ecf0f1;
+        border-radius: 8px;
+        padding: 20px;
+        width: 90%;
+        max-width: 750px;
+        margin-top: 25px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>🍏 JavaScript Data Structure – Arrays</h1>
+    <p>Open your browser console to follow step-by-step logs.</p>
+
+    <pre>
+// Demonstrated Concepts:
+// 1. Creating arrays
+// 2. Accessing array items
+// 3. push(), pop(), shift(), unshift()
+// 4. concat(), slice()
+// 5. .length property
+    </pre>
+
+    <div id="output">Running array examples...</div>
+
+    <script>
+      console.log(" --- JAVASCRIPT ARRAYS DEMO ---");
+
+      // CREATING AN ARRAY
+
+      const fruits = ["apple", "banana", "mango", "kiwi"];
+      console.log("Initial Array:", fruits);
+
+      // ACCESSING ELEMENTS BY INDEX
+
+      console.log("\ Accessing elements using index:");
+      console.log("First fruit:", fruits[0]); // apple
+      console.log("Second fruit:", fruits[1]); // banana
+      console.log("Third fruit:", fruits[2]); // mango
+      console.log("Fourth fruit:", fruits[3]); // kiwi
+
+      // PUSH() → adds to the end
+
+      console.log("\ Using push() to add 'pineapple' at the end:");
+      fruits.push("pineapple");
+      console.log("After push:", fruits);
+
+      // POP() → removes the last element
+
+      console.log("\ Using pop() to remove last element:");
+      fruits.pop();
+      console.log("After pop:", fruits);
+
+      // SHIFT() → removes the first element
+
+      let books = ["The Hobbit", "No Chess Book", "HTML"];
+      console.log("\nBooks Array:", books);
+
+      console.log(" Using shift() to remove first item:");
+      books.shift();
+      console.log("After shift:", books);
+
+      // UNSHIFT() → adds to the beginning
+
+      console.log("\ Using unshift() to add 'Main Stack' at start:");
+      books.unshift("Main Stack");
+      console.log("After unshift:", books);
+
+      // CONCAT() → merge arrays
+
+      console.log("\ Using concat() to merge two arrays:");
+      const colors1 = ["red", "blue"];
+      const colors2 = ["green", "yellow"];
+      const allColors = colors1.concat(colors2);
+      console.log("All Colors:", allColors);
+
+      // SLICE() → extract part of an array
+
+      console.log("\ Using slice() to extract a portion:");
+      const techCompanies = [
+        "Google",
+        "Amazon",
+        "Facebook",
+        "Apple",
+        "Netflix",
+      ];
+      const selectedCompanies = techCompanies.slice(1, 4);
+      console.log("Selected Companies:", selectedCompanies);
+      console.log("Original Companies:", techCompanies);
+
+      // LENGTH PROPERTY
+
+      console.log("\ Using length property:");
+      const totalCompanies = techCompanies.length;
+      console.log("Total Companies:", totalCompanies);
+
+      //  SUMMARY DISPLAY
+
+      const output = document.getElementById("output");
+      output.innerHTML = `
+        <h3> Array Demonstration Complete</h3>
+        <ul>
+          <li><strong>Created Array:</strong> [${fruits.join(", ")}]</li>
+          <li><strong>After push & pop:</strong> ${fruits.join(", ")}</li>
+          <li><strong>Books (after shift/unshift):</strong> [${books.join(
+            ", "
+          )}]</li>
+          <li><strong>All Colors:</strong> [${allColors.join(", ")}]</li>
+          <li><strong>Selected Companies:</strong> [${selectedCompanies.join(
+            ", "
+          )}]</li>
+          <li><strong>Total Companies:</strong> ${totalCompanies}</li>
+        </ul>
+      `;
+
+      console.log(`
+ Key Takeaways:
+- Arrays store ordered collections of data (indexed starting from 0)
+- push() → Add item at END
+- pop() → Remove item from END
+- shift() → Remove item from START
+- unshift() → Add item at START
+- concat() → Merge arrays into a new array
+- slice() → Copy/extract a section of array without modifying original
+- length → Returns total number of elements
+`);
+
+      console.log(" --- END OF ARRAYS DEMO ---");
+    </script>
+  </body>
+</html>

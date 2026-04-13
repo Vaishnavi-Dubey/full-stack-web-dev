@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Number Methods & Budget Tracker</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        padding: 2rem;
+      }
+
+      h1 {
+        color: #333;
+      }
+
+      .section {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+      }
+
+      .result {
+        font-family: monospace;
+        background: #eef;
+        padding: 1rem;
+        border-radius: 6px;
+        margin-top: 1rem;
+        white-space: pre-line;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>JS Number Methods & Budget Tracker</h1>
+
+    <div class="section" id="output">
+      <h2>Console Output:</h2>
+      <div class="result" id="consoleOutput"></div>
+    </div>
+
+    <script>
+      const outputDiv = document.getElementById("consoleOutput");
+
+      // Helper function to write to UI
+      function print(msg) {
+        outputDiv.innerText += msg + "\n";
+        console.log(msg);
+      }
+
+      //NUMBER METHODS
+
+      // .toFixed(n): Formats number to 'n' decimal places (returns string)
+      let amount = 19.393;
+      let result = amount.toFixed(2); // "19.39"
+      print("//toFixed:");
+      print("Formatted (toFixed): " + result);
+
+      // isNaN(value): Checks if value is Not a Number
+      let qty = "50";
+      print("\n//isNaN:");
+      print("Is NaN: " + isNaN(qty)); // false
+
+      // parseFloat(): Converts string to float
+      let convertedNum = parseFloat(qty); // 50
+      print("\n//parseFloat:");
+      print("Converted Number (parseFloat): " + convertedNum);
+      print("Original String: " + qty);
+
+      //ARITHMETIC OPERATORS
+
+      print("\n//Arithmetic Operators:");
+
+      // Addition (+)
+      let apples = 10;
+      let oranges = 5;
+      let totalFruits = apples + oranges;
+      print("Total Fruits: " + totalFruits);
+
+      // Subtraction (-)
+      let initialBalance = 1000;
+      let withdrawal = 200;
+      let remainBalance = initialBalance - withdrawal;
+      print("Remaining Balance: " + remainBalance);
+
+      // Multiplication (*)
+      let costPriceItem = 20;
+      let qtyItems = 4;
+      let totalCost = costPriceItem * qtyItems;
+      print("Total Cost: " + totalCost);
+
+      // Division (/)
+      let totalDistance = 120;
+      let hours = 2;
+      let speed = totalDistance / hours;
+      print("Speed: " + speed + " km/h");
+
+      // Modulus (%)
+      let totalStudents = 53;
+      let groupSize = 5;
+      let remainingStudents = totalStudents % groupSize;
+      print("Remaining Students: " + remainingStudents);
+
+      // Exponentiation (**)
+      let base = 2;
+      let power = 3;
+      let exponentResult = base ** power;
+      print("Exponentiation: " + exponentResult);
+
+      // Increment (++)
+      let currentAge = 25;
+      currentAge++;
+      print("Incremented Age: " + currentAge);
+
+      // Decrement (--)
+      let countDown = 10;
+      countDown--;
+      print("Countdown: " + countDown);
+
+      //CASE STUDY: Budget Tracker
+
+      print("\n//Monthly Budget Tracker:");
+
+      // Step 1: Monthly Income
+      let monthlyIncome = 3000;
+
+      // Step 2: Monthly Expenses
+      let rent = 1200;
+      let groceries = 600;
+      let utilities = 300;
+      let entertainment = 200;
+
+      // Step 3: Total Expenses
+      let totalExpenses = rent + groceries + utilities + entertainment;
+
+      // Step 4: Remaining Savings
+      let remainingSavings = monthlyIncome - totalExpenses;
+
+      // Step 5: Percentage Spent
+      let percentageSpent = ((totalExpenses / monthlyIncome) * 100).toFixed(2);
+
+      print("Total Expenses: $" + totalExpenses);
+      print("Remaining Savings: $" + remainingSavings);
+      print("Percentage of Income Spent: " + percentageSpent + "%");
+    </script>
+  </body>
+</html>

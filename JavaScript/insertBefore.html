@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Insert Sorted Students</title>
+
+    <style>
+      /* ===== Basic Styling ===== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        background-color: #f4f7fc;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px;
+      }
+
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 25px;
+      }
+
+      .container {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        max-width: 600px;
+      }
+
+      .student {
+        background-color: #ecf0f1;
+        padding: 10px 15px;
+        border-radius: 8px;
+        border-left: 5px solid #3498db;
+        margin-bottom: 10px;
+        font-size: 16px;
+      }
+
+      .controls {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 20px;
+      }
+
+      input {
+        padding: 8px;
+        border-radius: 6px;
+        border: 1px solid #bdc3c7;
+      }
+
+      button {
+        padding: 10px 18px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #2980b9;
+      }
+
+      #message {
+        margin-top: 15px;
+        background-color: #f4f6f8;
+        border-radius: 8px;
+        padding: 10px;
+        text-align: center;
+        font-size: 15px;
+        color: #2c3e50;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🏫 Insert Students Sorted by Grade</h1>
+
+    <div class="container">
+      <div id="studentContainer"></div>
+
+      <div class="controls">
+        <input type="text" id="nameInput" placeholder="Student name" />
+        <input type="text" id="emailInput" placeholder="Student email" />
+        <input type="number" id="gradeInput" placeholder="Grade (0–100)" />
+        <button id="addBtn">Add Student</button>
+      </div>
+
+      <div id="message">No students added yet.</div>
+    </div>
+
+    <script>
+      //SELECT DOM ELEMENTS
+
+      const container = document.getElementById("studentContainer");
+      const nameInput = document.getElementById("nameInput");
+      const emailInput = document.getElementById("emailInput");
+      const gradeInput = document.getElementById("gradeInput");
+      const addBtn = document.getElementById("addBtn");
+      const message = document.getElementById("message");
+
+      //FUNCTION: ADD STUDENT IN SORTED ORDER
+
+      function addStudent(name, email, grade) {
+        // Validate inputs
+        if (!name || !email || !grade) {
+          message.textContent = "⚠️ Please fill all fields.";
+          return;
+        }
+
+        // Create a new student element
+        const studentElement = document.createElement("div");
+        studentElement.className = "student";
+        studentElement.textContent = `Name: ${name} | Email: ${email} | Grade: ${grade}`;
+
+        // If container is empty, just append the student
+        if (container.children.length === 0) {
+          container.appendChild(studentElement);
+          message.textContent = ` Added ${name} with grade ${grade}.`;
+          return;
+        }
+
+        // Otherwise, find the correct position (sorted ascending)
+        let inserted = false;
+
+        for (const child of container.children) {
+          // Extract grade number from existing child text
+          const childGrade = parseInt(
+            child.textContent.split("|")[2].split(":")[1]
+          );
+
+          // If new student's grade is less than existing child's grade,
+          // insert before that child
+          if (grade < childGrade) {
+            container.insertBefore(studentElement, child);
+            inserted = true;
+            break;
+          }
+        }
+
+        // If not inserted yet, append to end
+        if (!inserted) {
+          container.appendChild(studentElement);
+        }
+
+        message.textContent = ` Added ${name} (${grade}) in sorted position.`;
+
+        console.log("Container children:", container.children);
+      }
+
+      //EVENT LISTENER
+
+      addBtn.addEventListener("click", () => {
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const grade = parseInt(gradeInput.value);
+
+        addStudent(name, email, grade);
+
+        // Clear input fields
+        nameInput.value = "";
+        emailInput.value = "";
+        gradeInput.value = "";
+      });
+
+      //INITIAL TEST DATA
+
+      addStudent("Emma", "emma@example.com", 90);
+      addStudent("Alex", "alex@example.com", 70);
+      addStudent("Ben", "ben@example.com", 84);
+      addStudent("Tweneboa", "tweneboa@example.com", 100);
+    </script>
+  </body>
+</html>

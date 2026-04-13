@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nesting of Objects in JavaScript</title>
+
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: #f8faff;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 10px;
+      }
+
+      pre {
+        background: #1e1e1e;
+        color: #00ff88;
+        padding: 20px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 750px;
+        overflow-x: auto;
+        font-size: 14px;
+      }
+
+      #output {
+        background-color: #ecf0f1;
+        border-radius: 8px;
+        padding: 20px;
+        width: 90%;
+        max-width: 750px;
+        margin-top: 25px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>🏗️ Nesting of Objects in JavaScript</h1>
+    <p>Open your console to see all outputs clearly explained.</p>
+
+    <pre>
+// Example covered:
+//  Creating nested objects
+//  Accessing nested properties with dot notation
+//  Accessing nested properties with bracket notation
+    </pre>
+
+    <div id="output">Running nested object demo...</div>
+
+    <script>
+      console.log(" --- NESTED OBJECT DEMO START ---");
+
+      // CREATING A NESTED OBJECT
+
+      const user = {
+        name: "Prince",
+        age: 30,
+        address: {
+          street: "123 Main Street",
+          city: "New York",
+          country: {
+            name: "USA",
+            code: "US",
+          },
+        },
+      };
+
+      console.log("Full User Object:", user);
+
+      // ACCESSING NESTED PROPERTIES USING DOT NOTATION
+
+      console.log("\ Accessing properties with DOT notation:");
+
+      const userName = user.name;
+      const userStreet = user.address.street;
+      const userCity = user.address.city;
+      const userCountryName = user.address.country.name;
+      const userCountryCode = user.address.country.code;
+
+      console.log("User Name:", userName);
+      console.log("Street:", userStreet);
+      console.log("City:", userCity);
+      console.log("Country Name:", userCountryName);
+      console.log("Country Code:", userCountryCode);
+
+      // ACCESSING NESTED PROPERTIES USING BRACKET NOTATION
+
+      console.log("\ Accessing properties with BRACKET notation:");
+
+      const countryNameBracket = user["address"]["country"]["name"];
+      const countryCodeBracket = user["address"]["country"]["code"];
+
+      console.log("Country Name (Bracket):", countryNameBracket);
+      console.log("Country Code (Bracket):", countryCodeBracket);
+
+      // DISPLAY RESULTS ON PAGE
+
+      const output = document.getElementById("output");
+      output.innerHTML = `
+        <h3> Nested Object Access Summary</h3>
+        <ul>
+          <li><strong>User Name:</strong> ${userName}</li>
+          <li><strong>Street:</strong> ${userStreet}</li>
+          <li><strong>City:</strong> ${userCity}</li>
+          <li><strong>Country Name (Dot Notation):</strong> ${userCountryName}</li>
+          <li><strong>Country Code (Dot Notation):</strong> ${userCountryCode}</li>
+          <li><strong>Country Name (Bracket Notation):</strong> ${countryNameBracket}</li>
+        </ul>
+      `;
+
+      console.log(`
+ Key Takeaways:
+
+ You can nest objects within objects as properties.
+   Example:
+   const user = {
+     name: "Prince",
+     address: {
+       street: "123 Main St",
+       country: { name: "USA", code: "US" }
+     }
+   };
+
+ Access nested values using DOT notation:
+   user.address.street
+   user.address.country.name
+
+ Or use BRACKET notation for flexibility:
+   user["address"]["country"]["name"]
+
+ Bracket notation is especially helpful for dynamic or variable-based keys.
+
+ Nested objects are powerful for grouping related data logically inside an object.
+`);
+
+      console.log(" --- END OF NESTED OBJECT DEMO ---");
+    </script>
+  </body>
+</html>

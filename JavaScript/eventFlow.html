@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Event Flow Example</title>
+    <style>
+      body {
+        font-family: Arial;
+        padding: 20px;
+      }
+      #parent {
+        padding: 20px;
+        border: 2px solid #333;
+        margin-bottom: 20px;
+      }
+      #list {
+        padding: 20px;
+        border: 2px solid blue;
+      }
+      li {
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid gray;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Event Flow (Capturing, Target, Bubbling)</h2>
+
+    <div id="parent">
+      Parent DIV
+      <ul id="list">
+        <li id="item1">Item 1</li>
+        <li id="item2">Item 2</li>
+      </ul>
+    </div>
+
+    <script>
+      // Parent div - capturing phase (third parameter: true)
+      document.getElementById("parent").addEventListener(
+        "click",
+        function (event) {
+          console.log("DIV clicked - Capturing Phase");
+          console.log("Phase:", event.eventPhase); // 1 = capturing
+        },
+        true
+      );
+
+      // UL element - capturing phase
+      document.getElementById("list").addEventListener(
+        "click",
+        function (event) {
+          console.log("UL clicked - Capturing Phase");
+          console.log("Phase:", event.eventPhase);
+        },
+        true
+      );
+
+      // Item 1 - bubbling phase (default is false)
+      document
+        .getElementById("item1")
+        .addEventListener("click", function (event) {
+          console.log("Item 1 clicked - Bubbling Phase");
+          console.log("Phase:", event.eventPhase); // 3 = bubbling
+        });
+
+      // Item 2 - bubbling phase + stopping propagation
+      document
+        .getElementById("item2")
+        .addEventListener("click", function (event) {
+          console.log("Item 2 clicked - Bubbling Phase");
+          console.log("Phase:", event.eventPhase);
+          event.stopPropagation(); // stops bubbling beyond this element
+          console.log("Propagation stopped here");
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>getElementsByName Example</title>
+</head>
+<body>
+
+  <h2>Select your favorite fruit:</h2>
+
+  <form>
+    <input type="radio" name="fruit" value="Apple"> Apple<br>
+    <input type="radio" name="fruit" value="Banana"> Banana<br>
+    <input type="radio" name="fruit" value="Mango"> Mango<br>
+    <input type="radio" name="fruit" value="Orange"> Orange<br>
+  </form>
+
+  <button onclick="getSelectedFruit()">Submit</button>
+
+  <script>
+    function getSelectedFruit() {
+      // Get all input elements with name="fruit"
+      const fruitOptions = document.getElementsByName("fruit");
+
+      // Loop through each radio input to find the selected one
+      for (let i = 0; i < fruitOptions.length; i++) {
+        if (fruitOptions[i].checked) {
+          alert("You selected: " + fruitOptions[i].value);
+          return;
+        }
+      }
+
+      alert("Please select a fruit.");
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Function Examples Demo</title>
+    <style>
+      body {
+        font-family: monospace;
+        background-color: #f4f4f4;
+        padding: 2rem;
+      }
+      h2 {
+        color: #333;
+        border-bottom: 2px solid #ccc;
+      }
+      pre {
+        background: #222;
+        color: #0f0;
+        padding: 1rem;
+        border-radius: 8px;
+        overflow-x: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Open Console to See Output</h2>
+    <pre>//Press F12 or Right Click → Inspect → Console</pre>
+
+    <script>
+      //   1. Function Declaration
+
+      function addNumbers() {
+        let a = 10;
+        let b = 20;
+        let result = a + b;
+        console.log("The sum is: " + result);
+      }
+      addNumbers();
+
+      //  2. Function with Parameters
+
+      function addNumbersWithParams(a, b) {
+        console.log("Value of a:", a);
+        console.log("Value of b:", b);
+        let result = a + b;
+        console.log("The sum is: " + result);
+      }
+      addNumbersWithParams(30, 100);
+
+      // 3. return Keyword
+
+      function addNumbersReturn(a, b) {
+        return a + b;
+      }
+      let sum = addNumbersReturn(5, 10);
+      console.log("The sum is:", sum);
+
+      //  4. Function Expression
+
+      const addExpr = function (a, b) {
+        return a + b;
+      };
+      console.log("Function Expression:", addExpr(5, 10));
+
+      //    5. Arrow Function
+
+      const addArrow = (a, b) => {
+        return a + b;
+      };
+      console.log("Arrow Function:", addArrow(10, 30));
+
+      //6. Arrow Function Short
+
+      const addShort = (a, b) => a + b;
+      console.log("Arrow Short:", addShort(10, 30));
+
+      // 7. IIFE Examples
+
+      (function () {
+        console.log("Namaste from IIFE");
+      })();
+
+      ((a, b) => {
+        console.log("Arrow IIFE Sum:", a + b);
+      })(10, 20);
+
+      //8. Default Parameters
+
+      const multiply1 = function (a = 1, b = 2) {
+        console.log("Product:", a * b);
+      };
+      multiply1(10, 10);
+      multiply1(5);
+      multiply1();
+
+      //      9. Calculator
+
+      const add = (a, b) => a + b;
+      const subtract = (a, b) => a - b;
+      const multiply = (a, b) => a * b;
+      const divide = (a, b) => (b = 0 ? "Error: Divide by 0" : a / b);
+
+      console.log("Add:", add(10, 20));
+      console.log("Subtract:", subtract(20, 10));
+      console.log("Multiply:", multiply(20, 10));
+      console.log("Divide:", divide(20, 10));
+
+      //10. Character & Text Tools
+
+      function characterCount(text) {
+        return text.length;
+      }
+      console.log("Character Count:", characterCount("JavaScript"));
+
+      const txtToLowerCase = (text) => text.toLowerCase();
+      const txtToUpperCase = (text) => text.toUpperCase();
+      const sliceTxt = (txt, start, end) => txt.slice(start, end);
+
+      console.log("Lower:", txtToLowerCase("NODEJS"));
+      console.log("Upper:", txtToUpperCase("nodejs"));
+      console.log("Slice:", sliceTxt("NextJS", 0, 2));
+
+      //     String Formatter
+
+      function formatString(str1, str2) {
+        return str1.toUpperCase() + " " + str2.toLowerCase();
+      }
+      console.log("Formatted:", formatString("wakatta", "DATTEBAYO"));
+
+      //      BMI Calculator
+
+      const calculateBMI = (weight, height) => {
+        let bmi = weight / (height * height);
+        if (bmi < 18.5) return "Underweight";
+        else if (bmi < 24.9) return "Normal weight";
+        else if (bmi < 29.9) return "Overweight";
+        else return "Obesity";
+      };
+      console.log("BMI Result:", calculateBMI(68, 1.75));
+
+      //  Student Grading System
+
+      function studentGradingSystem(totalMarks, obtainedMarks, classAverage) {
+        let pass = totalMarks * 0.5;
+        let excellent = totalMarks * 0.8;
+
+        return {
+          hasPassed: obtainedMarks >= pass,
+          hasPerformedExceptionally: obtainedMarks >= excellent,
+          isAboveAverage: obtainedMarks > classAverage,
+        };
+      }
+
+      const grade = studentGradingSystem(500, 410, 350);
+      console.log("Passed:", grade.hasPassed);
+      console.log("Exceptional:", grade.hasPerformedExceptionally);
+      console.log("Above Avg:", grade.isAboveAverage);
+    </script>
+  </body>
+</html>

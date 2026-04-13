@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flexbox</title>
+    <style>
+      /* Basic styling for body */
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+
+      /* Flex container */
+      .flex-container {
+        display: flex; /* Activates Flexbox layout */
+        flex-direction: row; /* Default: row (horizontal layout) */
+        justify-content: space-around; /* Distributes items with space around them */
+        align-items: center; /* Aligns items vertically in the center */
+        flex-wrap: wrap; /* Allows items to wrap onto multiple lines */
+        background-color: #333;
+        padding: 20px;
+        border-radius: 8px;
+      }
+
+      /* Flex items (children of flex-container) */
+      .flex-item {
+        background-color: #4caf50;
+        color: white;
+        padding: 30px;
+        margin: 10px;
+        font-size: 1.2rem;
+        text-align: center;
+        border-radius: 6px;
+        flex: 1 1 150px; /* Grow: 1, Shrink: 1, Basis: 150px */
+      }
+
+      /* Responsive adjustment */
+      @media (max-width: 600px) {
+        .flex-container {
+          flex-direction: column; /* Stack items vertically on small screens */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Flexbox Layout Example</h1>
+    <p>
+      This layout demonstrates how Flexbox distributes items across a container.
+    </p>
+
+    <!-- Flex container -->
+    <div class="flex-container">
+      <!-- Flex items -->
+      <div class="flex-item">Item 1</div>
+      <div class="flex-item">Item 2</div>
+      <div class="flex-item">Item 3</div>
+      <div class="flex-item">Item 4</div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orientation Media Query</title>
+    <style>
+      /* ===============================
+       Base Styles (applied on all devices)
+       =============================== */
+      body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        transition: background-color 0.3s ease;
+      }
+
+      .message {
+        margin-top: 20%;
+        font-size: 2rem;
+        padding: 20px;
+      }
+
+      /* ===============================
+       Portrait Orientation
+       =============================== */
+      @media screen and (orientation: portrait) {
+        body {
+          background-color: #e0f7fa; /* Light blue */
+          color: #004d40;
+        }
+
+        .message::before {
+          content: "Portrait Mode 📱";
+          display: block;
+          font-weight: bold;
+          margin-bottom: 10px;
+        }
+      }
+
+      /* ===============================
+       Landscape Orientation
+       =============================== */
+      @media screen and (orientation: landscape) {
+        body {
+          background-color: #ffecb3; /* Light yellow */
+          color: #6d4c41;
+        }
+
+        .message::before {
+          content: "Landscape Mode 🖥️";
+          display: block;
+          font-weight: bold;
+          margin-bottom: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="message">
+      Try rotating your device to see orientation-based changes!
+    </div>
+  </body>
+</html>

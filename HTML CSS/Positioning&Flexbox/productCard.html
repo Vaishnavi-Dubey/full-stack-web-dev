@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Card</title>
+    <style>
+      /* Reset and box model */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      /* Product Card Container */
+      .product-card {
+        background-color: #fff;
+        border-radius: 16px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        width: 300px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s ease;
+      }
+
+      .product-card:hover {
+        transform: scale(1.03);
+      }
+
+      /* Product Image */
+      .product-image img {
+        width: 100%;
+        height: auto;
+        transition: transform 0.4s ease;
+      }
+
+      .product-image:hover img {
+        transform: scale(1.05);
+      }
+
+      /* Product Info */
+      .product-info {
+        padding: 20px;
+      }
+
+      .product-name {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 8px;
+        color: #333;
+      }
+
+      .rating {
+        color: #ffc107;
+        margin-bottom: 12px;
+      }
+
+      .price {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        color: #27ae60;
+      }
+
+      /* Add to Cart Button */
+      .add-to-cart {
+        padding: 12px;
+        background-color: #2575fc;
+        color: white;
+        text-align: center;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+      }
+
+      .add-to-cart:hover {
+        background-color: #6a11cb;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="product-card">
+      <!-- Product Image Section -->
+      <div class="product-image">
+        <img
+          src="https://images.unsplash.com/photo-1585386959984-a415522b0103?auto=format&fit=crop&w=800&q=80"
+          alt="Wireless Headphones"
+        />
+      </div>
+
+      <!-- Product Information Section -->
+      <div class="product-info">
+        <div class="product-name">Wireless Headphones</div>
+
+        <!-- Rating -->
+        <div class="rating">⭐⭐⭐⭐☆</div>
+
+        <!-- Price -->
+        <div class="price">$89.99</div>
+
+        <!-- Button -->
+        <a href="#" class="add-to-cart">Add to Cart</a>
+      </div>
+    </div>
+  </body>
+</html>

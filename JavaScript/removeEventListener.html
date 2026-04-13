@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Remove Event Listener in JavaScript</title>
+
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: #f7faff;
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+      }
+
+      button {
+        padding: 12px 25px;
+        margin: 10px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background 0.3s;
+      }
+
+      #showBtn {
+        background-color: #3498db;
+        color: white;
+      }
+
+      #removeBtn {
+        background-color: #e74c3c;
+        color: white;
+      }
+
+      #showBtn:hover {
+        background-color: #2980b9;
+      }
+
+      #removeBtn:hover {
+        background-color: #c0392b;
+      }
+
+      #log {
+        margin-top: 30px;
+        padding: 20px;
+        width: 80%;
+        max-width: 600px;
+        background-color: #ecf0f1;
+        border-radius: 10px;
+        text-align: center;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Remove Event Listener in JavaScript</h1>
+    <button id="showBtn">Show Alert</button>
+    <button id="removeBtn">Remove Event</button>
+
+    <div id="log">Click the blue button to trigger the alert.</div>
+
+    <script>
+      console.log(" --- REMOVE EVENT LISTENER DEMO START ---");
+
+      // CREATE A NAMED FUNCTION (not anonymous)
+
+      function showAlert() {
+        console.log("⚡ Event triggered!");
+        document.getElementById("log").innerText =
+          "⚡ Event triggered: Hello from the Show Alert button!";
+      }
+
+      // SELECT ELEMENTS
+
+      const showButton = document.getElementById("showBtn");
+      const removeButton = document.getElementById("removeBtn");
+
+      // ADD EVENT LISTENER
+
+      showButton.addEventListener("click", showAlert);
+
+      // CREATE FUNCTION TO REMOVE EVENT LISTENER
+
+      function removeEvent() {
+        showButton.removeEventListener("click", showAlert);
+        document.getElementById("log").innerText =
+          " Event listener removed! Clicking 'Show Alert' will do nothing now.";
+        console.log(" Event listener removed!");
+      }
+
+      // ATTACH REMOVE FUNCTION TO REMOVE BUTTON
+
+      removeButton.addEventListener("click", removeEvent);
+
+      // KEY NOTES IN CONSOLE
+
+      console.log(`
+ Key Concepts:
+
+ addEventListener(type, callback)
+   → Attaches a function to a DOM event.
+   Example: element.addEventListener("click", handleClick);
+
+ removeEventListener(type, callback)
+   → Removes a previously attached event listener.
+   ⚠️ The callback function must be the SAME reference (not anonymous).
+
+ You cannot remove anonymous functions because they lack a reference.
+   Example 
+   element.addEventListener("click", function() { ... });
+   element.removeEventListener("click", function() { ... }); // Fails
+
+ Use named functions for add/remove consistency.
+   Example 
+   function handleClick() {...}
+   element.addEventListener("click", handleClick);
+   element.removeEventListener("click", handleClick);
+`);
+
+      console.log(" --- END OF REMOVE EVENT LISTENER DEMO ---");
+    </script>
+  </body>
+</html>

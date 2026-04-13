@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Traversal - nextSibling Example</title>
+
+    <style>
+      /* ===== Basic Styling ===== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        background-color: #f4f7fc;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px;
+      }
+
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+      }
+
+      #container {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        width: 80%;
+        max-width: 600px;
+      }
+
+      p {
+        padding: 10px;
+        background: #ecf0f1;
+        border-radius: 5px;
+        margin-bottom: 20px;
+      }
+
+      button {
+        background-color: #3498db;
+        border: none;
+        color: white;
+        padding: 10px 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 15px;
+        margin-bottom: 20px;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #2980b9;
+      }
+
+      #log {
+        margin-top: 20px;
+        background-color: #ecf0f1;
+        border-radius: 8px;
+        padding: 10px;
+        text-align: center;
+        color: #2c3e50;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Traversing the DOM using nextSibling</h1>
+
+    <div id="container">
+      <button>Change Next Text</button>
+      <p>Text 1: Original Paragraph</p>
+
+      <button>Change Next Text</button>
+      <p>Text 2: Original Paragraph</p>
+    </div>
+
+    <div id="log">Open console to see node traversal logs.</div>
+
+    <script>
+      //STEP 1: SELECT THE CONTAINER
+
+      const containerElement = document.getElementById("container");
+      console.log(" Container:", containerElement);
+
+      //STEP 2: SELECT ALL BUTTONS INSIDE THE CONTAINER
+
+      const buttonsElement = document.querySelectorAll("#container button");
+      console.log("📦 All Buttons (NodeList):", buttonsElement);
+
+      //STEP 3: LOOP THROUGH EACH BUTTON AND ACCESS ITS NEXT SIBLING
+
+      buttonsElement.forEach((button, index) => {
+        console.log(`\ Button ${index + 1}:`, button);
+
+        // Get the next sibling node
+        const nextElement = button.nextSibling;
+        console.log(" Next Sibling Node:", nextElement);
+
+        // Check for node type (1 = element, 3 = text, 8 = comment)
+        if (nextElement && nextElement.nodeType === 3) {
+          // Skip text nodes (whitespace) and move to actual element
+          console.log(" Skipping whitespace text node...");
+          const nextRealElement = nextElement.nextSibling;
+          if (nextRealElement && nextRealElement.nodeType === 1) {
+            nextRealElement.textContent =
+              " Changed Text (from button " + (index + 1) + ")";
+          }
+        } else if (nextElement && nextElement.nodeType === 1) {
+          // Directly update if the next sibling is an element
+          nextElement.textContent =
+            " Changed Text (from button " + (index + 1) + ")";
+        } else {
+          console.log(" No valid next sibling element found.");
+        }
+      });
+
+      //STEP 4: INTERACTION - On Click
+
+      buttonsElement.forEach((button, index) => {
+        button.addEventListener("click", () => {
+          console.clear();
+          console.log(` Button ${index + 1} Clicked!`);
+
+          const nextElement = button.nextSibling;
+          console.log(" Next Sibling Node:", nextElement);
+          console.log("Node Type:", nextElement?.nodeType);
+
+          if (nextElement && nextElement.nodeType === 3) {
+            const nextRealElement = nextElement.nextSibling;
+            if (nextRealElement && nextRealElement.nodeType === 1) {
+              nextRealElement.textContent = ` Updated via click on Button ${
+                index + 1
+              }`;
+              document.getElementById("log").textContent = `Paragraph ${
+                index + 1
+              } updated!`;
+            }
+          } else if (nextElement && nextElement.nodeType === 1) {
+            nextElement.textContent = ` Updated via click on Button ${
+              index + 1
+            }`;
+            document.getElementById("log").textContent = `Paragraph ${
+              index + 1
+            } updated!`;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

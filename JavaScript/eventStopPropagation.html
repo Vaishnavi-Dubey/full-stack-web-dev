@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Stop Propagation Demo</title>
+    <style>
+      #outer {
+        padding: 20px;
+        border: 2px solid black;
+        margin-bottom: 20px;
+      }
+      #middle {
+        padding: 20px;
+        border: 2px solid blue;
+      }
+      #inner {
+        padding: 20px;
+        border: 2px solid green;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>stopPropagation Demonstration</h3>
+
+    <div id="outer">
+      Outer Div
+      <div id="middle">
+        Middle Div
+        <div id="inner">Inner Div</div>
+      </div>
+    </div>
+
+    <script>
+      // Outer div listener (bubbling phase)
+      document.getElementById("outer").addEventListener(
+        "click",
+        function (event) {
+          console.log("Outer div clicked");
+          console.log("Phase:", event.eventPhase);
+        },
+        false
+      );
+
+      // Middle div listener (bubbling phase)
+      document.getElementById("middle").addEventListener(
+        "click",
+        function (event) {
+          console.log("Middle div clicked");
+          console.log("Phase:", event.eventPhase);
+          event.stopPropagation();
+        },
+        false
+      );
+
+      // Inner div listener (bubbling phase)
+      document.getElementById("inner").addEventListener(
+        "click",
+        function (event) {
+          console.log("Inner div clicked");
+          console.log("Phase:", event.eventPhase);
+        },
+        false
+      );
+    </script>
+  </body>
+</html>

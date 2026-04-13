@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Window Object</title>
+  </head>
+  <body>
+    <h1>Check your console!</h1>
+    <button onclick="showWindowDetails()">Show Window Info</button>
+    <button onclick="showAlert()">Alert</button>
+    <button onclick="showConfirm()">Confirm</button>
+    <button onclick="showPrompt()">Prompt</button>
+    <button onclick="openGoogle()">Open Google</button>
+
+    <script>
+      function showWindowDetails() {
+        // --- Window dimensions ---
+        console.log("Window Width:", window.innerWidth); // Viewport width in pixels
+        console.log("Window Height:", window.innerHeight); // Viewport height in pixels
+
+        // --- Location object ---
+        console.log("Location Object:", window.location); // Full location object (URL info)
+        console.log("Current URL:", window.location.href); // Full URL of the current page
+        console.log("Host:", window.location.host); // Hostname + port (e.g., 'localhost:5500')
+        console.log("Pathname:", window.location.pathname); // Path after the domain
+
+        // --- History object ---
+        console.log("History Object:", window.history); // Allows navigation through browser history
+        // Example: window.history.back();   // Go back one page
+        // Example: window.history.forward(); // Go forward one page
+
+        // --- Navigator object ---
+        console.log("Navigator Object:", window.navigator); // Info about browser & OS
+        console.log("User Agent:", window.navigator.userAgent); // Browser signature
+        console.log("Language:", window.navigator.language); // Browser language
+
+        // --- Screen object ---
+        console.log("Screen Object:", window.screen); // Info about the user's screen
+        console.log("Screen Width:", window.screen.width); // Full screen width
+        console.log("Screen Height:", window.screen.height); // Full screen height
+      }
+
+      // --- Alert dialog ---
+      function showAlert() {
+        window.alert("This is an alert box!");
+      }
+
+      // --- Confirm dialog  ---
+      function showConfirm() {
+        const userConfirmed = window.confirm("Do you want to proceed?");
+        if (userConfirmed) {
+          console.log("User clicked OK");
+        } else {
+          console.log("User clicked Cancel");
+        }
+      }
+
+      // --- Prompt dialog  ---
+      function showPrompt() {
+        const userInput = window.prompt("What's your name?");
+        if (userInput) {
+          console.log("User entered:", userInput);
+        } else {
+          console.log("User cancelled or entered nothing");
+        }
+      }
+
+      // --- Open a new tab/window ---
+      function openGoogle() {
+        window.open("https://www.google.com", "_blank"); // Opens in a new tab
+      }
+    </script>
+  </body>
+</html>

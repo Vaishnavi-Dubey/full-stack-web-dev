@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>getAttribute() Demo</title>
+
+    <style>
+      /* ===== Basic Styling ===== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        background-color: #f4f7fc;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px;
+      }
+
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+      }
+
+      .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .gallery img {
+        width: 200px;
+        height: 140px;
+        border-radius: 8px;
+        border: 3px solid #3498db;
+        object-fit: cover;
+        transition: transform 0.3s, opacity 0.3s;
+      }
+
+      .gallery img:hover {
+        transform: scale(1.05);
+      }
+
+      .controls {
+        margin: 20px 0;
+        display: flex;
+        gap: 10px;
+      }
+
+      button {
+        padding: 10px 18px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #2980b9;
+      }
+
+      #log {
+        margin-top: 15px;
+        background-color: #ecf0f1;
+        padding: 10px 12px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 500px;
+        color: #2c3e50;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>📸 Using getAttribute() – Filter Gallery by Author</h1>
+
+    <div class="controls">
+      <button id="showAlice">Show Alice’s Images</button>
+      <button id="showBob">Show Bob’s Images</button>
+      <button id="showAll">Show All</button>
+    </div>
+
+    <!-- Image Gallery -->
+    <div id="gallery" class="gallery">
+      <img
+        src="https://picsum.photos/id/1015/200/140"
+        data-author="Alice"
+        style="border-color: #9b59b6"
+        alt="Mountain by Alice"
+      />
+      <img
+        src="https://picsum.photos/id/1025/200/140"
+        data-author="Bob"
+        style="border-color: #e74c3c"
+        alt="Dog by Bob"
+      />
+      <img
+        src="https://picsum.photos/id/1041/200/140"
+        data-author="Alice"
+        style="border-color: #16a085"
+        alt="Forest by Alice"
+      />
+    </div>
+
+    <div id="log">Click a button to filter images by author.</div>
+
+    <script>
+      //DOM SELECTION
+
+      const gallery = document.getElementById("gallery");
+      const allImages = gallery.querySelectorAll("img");
+      const log = document.getElementById("log");
+
+      const showAliceBtn = document.getElementById("showAlice");
+      const showBobBtn = document.getElementById("showBob");
+      const showAllBtn = document.getElementById("showAll");
+
+      //FUNCTION: Filter Images by Author
+
+      function filterImagesByAuthor(authorName) {
+        // Create an array to store images matching the author
+        const matchedImages = [];
+
+        // Loop through all <img> elements inside the gallery
+        allImages.forEach((img) => {
+          // Get the 'data-author' attribute using getAttribute()
+          const author = img.getAttribute("data-author");
+
+          // Example: getAttribute("src") → get image source
+          const src = img.getAttribute("src");
+
+          console.log(`Image Source: ${src} | Author: ${author}`);
+
+          // Compare authors and update visibility
+          if (authorName === "all" || author === authorName) {
+            img.style.display = "block"; // show
+            matchedImages.push(img);
+          } else {
+            img.style.display = "none"; // hide
+          }
+        });
+
+        // Log results
+        if (authorName === "all") {
+          log.textContent = `👀 Showing all ${allImages.length} images.`;
+        } else {
+          log.textContent = `📷 Showing ${matchedImages.length} image(s) by ${authorName}.`;
+        }
+
+        console.log("Matched images:", matchedImages);
+      }
+
+      //EVENT LISTENERS
+
+      showAliceBtn.addEventListener("click", () =>
+        filterImagesByAuthor("Alice")
+      );
+      showBobBtn.addEventListener("click", () => filterImagesByAuthor("Bob"));
+      showAllBtn.addEventListener("click", () => filterImagesByAuthor("all"));
+
+      //INITIAL DEMONSTRATION
+
+      console.log("All images in gallery:", allImages);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Traversal - childNodes Example</title>
+
+    <style>
+      /* ===== Basic Styling ===== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        background-color: #f4f7fc;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px;
+      }
+
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+      }
+
+      /* ===== Container Visualization ===== */
+      .outer {
+        border: 3px solid #2980b9;
+        padding: 20px;
+        border-radius: 8px;
+        width: 80%;
+        max-width: 600px;
+        background: #eaf2f8;
+      }
+
+      .inner {
+        border: 2px dashed #27ae60;
+        padding: 15px;
+        border-radius: 6px;
+        background: #e8f8f5;
+      }
+
+      ul {
+        background: #fef9e7;
+        border-radius: 6px;
+        padding: 15px;
+        list-style-type: none;
+      }
+
+      li {
+        padding: 10px;
+        margin-bottom: 6px;
+        border-radius: 6px;
+        background-color: #f2f3f4;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      li:hover {
+        background-color: #d6dbdf;
+      }
+
+      #log {
+        margin-top: 20px;
+        width: 80%;
+        max-width: 600px;
+        background: #ecf0f1;
+        border-radius: 8px;
+        padding: 10px;
+        color: #2c3e50;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>🌲 Traversing the DOM with childNodes</h1>
+
+    <!-- Parent (Outer) -->
+    <div class="outer" id="outerDiv">
+      <!-- Child 1: text node (whitespace) -->
+      <!-- Child 2: inner div -->
+      <div class="inner" id="innerDiv">
+        <!-- Child 1: text node (whitespace) -->
+        <!-- Child 2: unordered list -->
+        <ul id="fruitList">
+          <li data-item="apple">Apple</li>
+          <li data-item="banana">Banana</li>
+          <li data-item="cherry">Cherry</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="log">Open console to see childNodes traversal results.</div>
+
+    <script>
+      //STEP 1: SELECT OUTER PARENT ELEMENT
+
+      const outerDiv = document.getElementById("outerDiv");
+      console.log(" Outer Div:", outerDiv);
+
+      //STEP 2: ACCESS CHILD NODES OF OUTER DIV
+
+      // This includes text nodes, comment nodes, and element nodes
+      const outerChildren = outerDiv.childNodes;
+      console.log(" outerDiv.childNodes (NodeList):", outerChildren);
+
+      // Access first child (usually a text node or whitespace)
+      const firstChildNode = outerChildren[0];
+      console.log(" First child of outerDiv:", firstChildNode);
+
+      // Access second child (the actual <div class="inner">)
+      const innerDiv = outerChildren[1];
+      console.log(" Second child (innerDiv):", innerDiv);
+
+      //STEP 3: ACCESS CHILD NODES OF INNER DIV
+
+      const innerChildren = innerDiv.childNodes;
+      console.log(" innerDiv.childNodes (NodeList):", innerChildren);
+
+      // First child of innerDiv (likely a text node)
+      const innerFirstChild = innerChildren[0];
+      console.log(" innerDiv first child (text node):", innerFirstChild);
+
+      // Second child of innerDiv (the actual <ul>)
+      const nestedList = innerChildren[1];
+      console.log(" innerDiv second child (ul):", nestedList);
+
+      //STEP 4: ACCESS CHILD NODES OF THE UL ELEMENT
+
+      const listChildren = nestedList.childNodes;
+      console.log(" UL.childNodes:", listChildren);
+
+      // Access specific nodes inside UL
+      console.log(
+        " First list item (may include whitespace):",
+        listChildren[0]
+      );
+      console.log(" Second list item (banana):", listChildren[1]);
+      console.log(" Third list item (cherry):", listChildren[3]);
+
+      //STEP 5: INTERACTION EXAMPLE
+
+      nestedList.addEventListener("click", (e) => {
+        if (e.target.tagName === "LI") {
+          console.clear();
+          console.log(" You clicked:", e.target.textContent.trim());
+          console.log(" Its parent (ul):", e.target.parentNode);
+          console.log(
+            " Its grandparent (div.inner):",
+            e.target.parentNode.parentNode
+          );
+          console.log(
+            " Its great grandparent (div.outer):",
+            e.target.parentNode.parentNode.parentNode
+          );
+
+          document.getElementById("log").textContent =
+            "Clicked: " +
+            e.target.textContent.trim() +
+            " (see console for traversal)";
+        }
+      });
+    </script>
+  </body>
+</html>

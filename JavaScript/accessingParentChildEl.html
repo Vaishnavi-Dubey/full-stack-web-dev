@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parent & Child DOM Access</title>
+    <style>
+      Basic styling body {
+        font-family: sans-serif;
+        padding: 20px;
+        background-color: #f2f2f2;
+      }
+
+      .card-container {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .card {
+        background-color: white;
+        padding: 15px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        width: 200px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .card h3 {
+        margin: 0 0 10px 0;
+      }
+
+      .card p {
+        color: #555;
+        font-size: 0.9em;
+      }
+
+      .card button {
+        margin-top: 10px;
+        padding: 6px 12px;
+        border: none;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Parent and Child DOM Demo</h2>
+    <div class="card-container">
+      <div class="card">
+        <h3>Card One</h3>
+        <p>This is the first card.</p>
+        <button>Show Info</button>
+      </div>
+      <div class="card">
+        <h3>Card Two</h3>
+        <p>This is the second card.</p>
+        <button>Show Info</button>
+      </div>
+    </div>
+
+    <script>
+      // Select all buttons inside cards
+      const buttons = document.querySelectorAll(".card button");
+
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          // Access parent element (card)
+          const parentCard = btn.parentElement;
+
+          // Access child elements inside the card
+          const title = parentCard.querySelector("h3").textContent;
+          const description = parentCard.querySelector("p").textContent;
+
+          // Output to console
+          console.log("Parent Card Element:", parentCard);
+          console.log("Title:", title);
+          console.log("Description:", description);
+
+          alert(`Card Title: ${title}\nDescription: ${description}`);
+        });
+      });
+    </script>
+  </body>
+</html>

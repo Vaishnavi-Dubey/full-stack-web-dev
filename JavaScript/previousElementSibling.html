@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Traversal - previousElementSibling Example</title>
+
+    <style>
+      /* ===== Basic Styling ===== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        background-color: #f4f7fc;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px;
+      }
+
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        width: 80%;
+        max-width: 400px;
+      }
+
+      li {
+        padding: 12px 20px;
+        border-bottom: 1px solid #ecf0f1;
+        transition: background-color 0.3s, transform 0.2s;
+        cursor: pointer;
+      }
+
+      li:hover {
+        background-color: #f0f3f4;
+      }
+
+      li.highlight-prev {
+        background-color: #ffefc1;
+      }
+
+      li.highlight-current {
+        background-color: #b3f0ff;
+        font-weight: bold;
+      }
+
+      li.highlight-next {
+        background-color: #d6f5d6;
+      }
+
+      #log {
+        margin-top: 25px;
+        background-color: #ecf0f1;
+        border-radius: 8px;
+        padding: 10px;
+        width: 80%;
+        max-width: 400px;
+        text-align: center;
+        color: #2c3e50;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Traversing with previousElementSibling</h1>
+
+    <ul id="fruit-list">
+      <li id="apple">Apple</li>
+      <li id="banana">Banana</li>
+      <li id="cherry">Cherry</li>
+      <li id="date">Date</li>
+      <li id="fig">Fig</li>
+      <li id="grape">Grape</li>
+      <li id="mango">Mango</li>
+      <li id="orange">Orange</li>
+    </ul>
+
+    <div id="log">Open console to see DOM traversal results.</div>
+
+    <script>
+      //STEP 1: SELECT THE ELEMENT (Cherry)
+
+      const cherryElement = document.getElementById("cherry");
+      cherryElement.classList.add("highlight-current");
+      console.log(" Selected Element:", cherryElement);
+
+      //STEP 2: FIND PREVIOUS ELEMENT SIBLING
+
+      const previousFruitElement = cherryElement.previousElementSibling;
+      console.log(" Previous Element Sibling:", previousFruitElement);
+
+      if (previousFruitElement) {
+        previousFruitElement.classList.add("highlight-prev");
+      } else {
+        console.log(" Cherry is the first item; no previous sibling.");
+      }
+
+      //STEP 3: FIND NEXT ELEMENT SIBLING
+
+      const nextFruitElement = cherryElement.nextElementSibling;
+      console.log(" Next Element Sibling:", nextFruitElement);
+
+      if (nextFruitElement) {
+        nextFruitElement.classList.add("highlight-next");
+      } else {
+        console.log(" Cherry is the last item; no next sibling.");
+      }
+
+      //STEP 4: DISPLAY RESULTS ON PAGE
+
+      const logDiv = document.getElementById("log");
+      logDiv.innerHTML = `
+        <strong>Selected:</strong> ${cherryElement.textContent}<br>
+        <strong>Previous Sibling:</strong> ${
+          previousFruitElement ? previousFruitElement.textContent : "None"
+        }<br>
+        <strong>Next Sibling:</strong> ${
+          nextFruitElement ? nextFruitElement.textContent : "None"
+        }
+      `;
+
+      //STEP 5: OPTIONAL — INTERACTIVE CLICKS
+
+      const listItems = document.querySelectorAll("#fruit-list li");
+
+      listItems.forEach((item) => {
+        item.addEventListener("click", () => {
+          // Reset styles
+          listItems.forEach((li) =>
+            li.classList.remove(
+              "highlight-current",
+              "highlight-prev",
+              "highlight-next"
+            )
+          );
+
+          // Highlight current and neighbors
+          item.classList.add("highlight-current");
+
+          const prev = item.previousElementSibling;
+          const next = item.nextElementSibling;
+
+          if (prev) prev.classList.add("highlight-prev");
+          if (next) next.classList.add("highlight-next");
+
+          logDiv.innerHTML = `
+            <strong>Selected:</strong> ${item.textContent}<br>
+            <strong>Previous Sibling:</strong> ${
+              prev ? prev.textContent : "None"
+            }<br>
+            <strong>Next Sibling:</strong> ${next ? next.textContent : "None"}
+          `;
+
+          console.clear();
+          console.log(" Selected:", item);
+          console.log(" Previous:", prev);
+          console.log(" Next:", next);
+        });
+      });
+    </script>
+  </body>
+</html>

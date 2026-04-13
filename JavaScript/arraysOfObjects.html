@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arrays with Objects – JavaScript</title>
+
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: #f5f8fc;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h1 {
+        color: #2c3e50;
+      }
+
+      pre {
+        background: #1e1e1e;
+        color: #00ff88;
+        padding: 20px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 750px;
+        overflow-x: auto;
+        font-size: 14px;
+      }
+
+      #output {
+        background-color: #ecf0f1;
+        border-radius: 8px;
+        padding: 20px;
+        width: 90%;
+        max-width: 750px;
+        margin-top: 20px;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 8px 12px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #34495e;
+        color: #fff;
+      }
+
+      td {
+        background-color: #fff;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Arrays Containing Objects</h1>
+    <p>
+      Open your console for detailed logs while viewing structured data below.
+    </p>
+
+    <pre>
+// Demonstrates:
+//  Creating arrays of objects
+//  Accessing specific objects and properties
+//  Adding a new object (push / unshift)
+//  Updating an existing object property
+    </pre>
+
+    <div id="output">Running array-of-objects demo...</div>
+
+    <script>
+      console.log(" --- ARRAYS OF OBJECTS DEMO START ---");
+
+      // CREATE AN ARRAY OF OBJECTS
+
+      const users = [
+        { name: "Alice", age: 30, city: "New York" },
+        { name: "Bob", age: 25, city: "San Francisco" },
+        { name: "Charlie", age: 26, city: "Chicago" },
+      ];
+
+      console.log("Initial Users:", users);
+
+      // ACCESS SPECIFIC USERS AND THEIR PROPERTIES
+
+      console.log("\ Accessing users by index:");
+      const firstUser = users[0];
+      const secondUser = users[1];
+
+      console.log("First User:", firstUser);
+      console.log("Second User:", secondUser);
+      console.log("First User Name:", users[0].name);
+      console.log("Second User City:", users[1].city);
+
+      // ADD NEW USERS (PUSH & UNSHIFT)
+
+      console.log("\ Adding new user at the END (push):");
+      users.push({ name: "David", age: 40, city: "Accra" });
+      console.log("After push:", users);
+
+      console.log("\ Adding new user at the BEGINNING (unshift):");
+      users.unshift({ name: "Evelyn", age: 35, city: "Berlin" });
+      console.log("After unshift:", users);
+
+      // UPDATE EXISTING USER DATA
+
+      console.log("\ Updating existing user name (Alice → CC):");
+      users[1].name = "CC"; // Alice was originally at index 1 after unshift
+      console.log("After update:", users);
+
+      // DISPLAY USERS IN A TABLE ON WEB PAGE
+
+      const output = document.getElementById("output");
+
+      function renderTable() {
+        let tableHTML = `
+          <h3> Current Users List</h3>
+          <table>
+            <tr><th>Name</th><th>Age</th><th>City</th></tr>
+        `;
+
+        users.forEach((user) => {
+          tableHTML += `<tr>
+            <td>${user.name}</td>
+            <td>${user.age}</td>
+            <td>${user.city}</td>
+          </tr>`;
+        });
+
+        tableHTML += `</table>`;
+        output.innerHTML = tableHTML;
+      }
+
+      renderTable();
+
+      // KEY TAKEAWAYS (Console Log)
+
+      console.log(`
+ Key Takeaways:
+
+ Arrays can store multiple objects → [ { }, { }, { } ]
+   Each object can hold multiple properties (key-value pairs).
+
+ Access items via their index → users[0], users[1], etc.
+   Access object properties → users[0].name or users[2].city
+
+ Add items:
+   - push() → adds to END of array
+   - unshift() → adds to BEGINNING of array
+
+ Modify data:
+   Access the index → users[0].name = "New Name"
+
+ Arrays of objects = structured, flexible, and realistic data format
+   Most APIs, databases, and apps return data in this format.
+`);
+
+      console.log(" --- END OF ARRAYS OF OBJECTS DEMO ---");
+    </script>
+  </body>
+</html>

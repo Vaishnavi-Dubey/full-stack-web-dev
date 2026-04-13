@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CSS Fixed Positioning</title>
+    <style>
+      /* Basic page styling */
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      /* Fixed header stays at the top of the viewport */
+      header {
+        position: fixed; /* Fixes the element relative to the viewport */
+        top: 0; /* Stick to the top */
+        left: 0; /* Align to the left edge */
+        width: 100%; /* Full width */
+        background-color: #333;
+        color: white;
+        padding: 15px 20px;
+        z-index: 1000; /* Ensure it stays on top of other content */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Content below header with padding to avoid overlap */
+      .content {
+        margin-top: 70px; /* Give space for the fixed header */
+        padding: 20px;
+      }
+
+      /* Example paragraph */
+      p {
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Fixed header -->
+    <header>
+      <h1>Fixed Positioning Example</h1>
+    </header>
+
+    <!-- Main content -->
+    <div class="content">
+      <p>
+        Scroll down this page to see that the header remains fixed at the top of
+        the viewport.
+      </p>
+      <p>
+        Fixed positioning means the element is positioned relative to the
+        browser window (viewport), so it does not move when you scroll the page.
+      </p>
+      <p>
+        This is useful for navigation bars, headers, footers, or any UI elements
+        you want visible at all times.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac
+        leo nunc. Vestibulum et mauris vel ante finibus maximus nec ut leo.
+        Integer consectetur luctus nulla, et convallis ante dapibus sed.
+        Suspendisse potenti. Etiam vel sapien et est adipiscing commodo.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac
+        leo nunc. Vestibulum et mauris vel ante finibus maximus nec ut leo.
+        Integer consectetur luctus nulla, et convallis ante dapibus sed.
+        Suspendisse potenti. Etiam vel sapien et est adipiscing commodo.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac
+        leo nunc. Vestibulum et mauris vel ante finibus maximus nec ut leo.
+        Integer consectetur luctus nulla, et convallis ante dapibus sed.
+        Suspendisse potenti. Etiam vel sapien et est adipiscing commodo.
+      </p>
+    </div>
+  </body>
+</html>

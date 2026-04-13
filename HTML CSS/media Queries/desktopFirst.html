@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Desktop-First Responsive Design</title>
+    <style>
+      /* ===============================
+       BASE STYLES (Desktop First)
+       =============================== */
+
+      /* Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Body styling for desktop */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        padding: 50px;
+      }
+
+      /* Header section */
+      header {
+        background-color: #004080;
+        color: white;
+        padding: 40px;
+        text-align: center;
+      }
+
+      /* Layout using flex for desktop */
+      .container {
+        display: flex;
+        justify-content: space-between;
+        gap: 30px;
+        margin-top: 30px;
+      }
+
+      .box {
+        flex: 1;
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .box h2 {
+        margin-bottom: 15px;
+        color: #004080;
+      }
+
+      .box p {
+        font-size: 18px;
+        line-height: 1.6;
+      }
+
+      /* ===============================
+       MEDIA QUERY FOR TABLETS (max-width: 992px)
+       =============================== */
+      @media screen and (max-width: 992px) {
+        .container {
+          flex-direction: column;
+        }
+
+        .box {
+          padding: 25px;
+          margin-bottom: 20px;
+        }
+
+        .box p {
+          font-size: 16px;
+        }
+      }
+
+      /* ===============================
+       MEDIA QUERY FOR MOBILE (max-width: 600px)
+       =============================== */
+      @media screen and (max-width: 600px) {
+        body {
+          padding: 20px;
+        }
+
+        header {
+          padding: 25px;
+          font-size: 20px;
+        }
+
+        .box {
+          padding: 20px;
+        }
+
+        .box h2 {
+          font-size: 20px;
+        }
+
+        .box p {
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <h1>Desktop-First Responsive Design</h1>
+    </header>
+
+    <!-- Content -->
+    <div class="container">
+      <div class="box">
+        <h2>Column One</h2>
+        <p>
+          This layout starts optimized for desktop and adjusts downward for
+          smaller screens using max-width media queries.
+        </p>
+      </div>
+      <div class="box">
+        <h2>Column Two</h2>
+        <p>
+          The boxes are side-by-side on large screens but stack vertically on
+          tablets and phones.
+        </p>
+      </div>
+      <div class="box">
+        <h2>Column Three</h2>
+        <p>
+          Media queries make the layout flexible, improving readability and
+          accessibility on all devices.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

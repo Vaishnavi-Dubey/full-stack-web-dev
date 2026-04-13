@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript ES6 – Objects</title>
+
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: #f4f7fc;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+      }
+
+      pre {
+        background: #1e1e1e;
+        color: #00ff88;
+        padding: 20px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 700px;
+        overflow-x: auto;
+        font-size: 14px;
+      }
+
+      #output {
+        background-color: #ecf0f1;
+        border-radius: 8px;
+        padding: 20px;
+        width: 90%;
+        max-width: 700px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>JavaScript Objects</h1>
+    <p>Check the console for details — everything is logged step by step.</p>
+
+    <pre>
+// Objects allow you to store data as key-value pairs
+// Example:
+// const person = { name: "Alice", age: 25, city: "New York" }
+    </pre>
+
+    <div id="output">Creating and modifying object...</div>
+
+    <script>
+      console.log(" --- JAVASCRIPT OBJECTS DEMO ---");
+
+      // ARRAYS VS OBJECTS
+
+      const personsArray = ["Alice", 25, "JS", true];
+      console.log("Array:", personsArray);
+      console.log(" Array values lack meaning without context.");
+
+      const person = {
+        name: "Alice",
+        age: 25,
+        city: "New York",
+      };
+
+      console.log("Object:", person);
+      console.log(
+        " Object values are labeled with meaningful keys (key-value pairs)."
+      );
+
+      // ADDING PROPERTIES TO OBJECT
+
+      console.log("\ Adding properties using DOT notation");
+      person.isMarried = false;
+      person.country = "USA";
+
+      console.log("Updated Object (dot notation):", person);
+
+      console.log("\ Adding properties using BRACKET notation");
+      person["hobby"] = "Coding";
+      console.log("After adding hobby:", person);
+
+      // ADDING ARRAYS OR COMPLEX VALUES
+
+      person["courses"] = ["JavaScript", "Node.js", "HTML"];
+      console.log("After adding array property:", person);
+
+      // NESTING OBJECTS
+
+      person.address = {
+        street: "123 Main St",
+        city: "New York",
+        zipcode: "10001",
+      };
+
+      console.log("After adding nested object:", person);
+
+      // ACCESSING DATA
+
+      console.log("\nAccessing Data:");
+      console.log("Name:", person.name);
+      console.log("Age:", person.age);
+      console.log("Courses:", person.courses.join(", "));
+      console.log("City from nested address:", person.address.city);
+
+      // DYNAMIC PROPERTY ACCESS
+
+      const keyName = "country";
+      console.log(
+        `Dynamic access using variable "${keyName}":`,
+        person[keyName]
+      );
+
+      //DISPLAY RESULTS IN BROWSER
+
+      const output = document.getElementById("output");
+      output.innerHTML = `
+        <h3> Object Created & Modified</h3>
+        <pre>${JSON.stringify(person, null, 2)}</pre>
+        <p><strong>Accessing some values:</strong></p>
+        <ul>
+          <li>Name: ${person.name}</li>
+          <li>Age: ${person.age}</li>
+          <li>City: ${person.city}</li>
+          <li>Hobby: ${person.hobby}</li>
+          <li>Courses: ${person.courses.join(", ")}</li>
+          <li>Address City: ${person.address.city}</li>
+        </ul>
+      `;
+
+      console.log(`
+ Key Takeaways:
+- Objects store data in key-value pairs.
+- Use DOT notation (obj.key) for simple keys.
+- Use BRACKET notation (obj["key"]) for dynamic or complex keys.
+- Objects can contain arrays, other objects, and even functions (methods).
+- Great for representing structured data.
+`);
+
+      console.log(" --- END OF OBJECT DEMO ---");
+    </script>
+  </body>
+</html>

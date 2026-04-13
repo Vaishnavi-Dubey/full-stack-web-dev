@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JavaScript String Methods Demo</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f4f6f9;
+        padding: 2rem;
+      }
+
+      h1 {
+        color: #2c3e50;
+      }
+
+      .output {
+        background: #fff;
+        padding: 1rem;
+        border-left: 4px solid #3498db;
+        margin: 1rem 0;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        font-family: "Courier New", monospace;
+        white-space: pre-wrap;
+      }
+
+      .section-title {
+        margin-top: 2rem;
+        font-weight: bold;
+        color: #34495e;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🧪 JavaScript String Methods Demo</h1>
+    <div class="output" id="output"></div>
+
+    <script>
+      const outputDiv = document.getElementById("output");
+
+      //Ways of Creating Strings
+
+      // Using single quotes
+      let singleQuoteString = "This is a single quoted string";
+
+      // Using double quotes
+      let doubleQuoteString = "This is a double quoted string";
+
+      // Using backticks (Template Literals)
+      let templateLiteralString = `This is a template literal string`;
+
+      //Common String Methods and Properties
+
+      // .length
+      let strLength = doubleQuoteString.length;
+
+      // Accessing Characters using index
+      let firstChar = doubleQuoteString[0];
+
+      // toLowerCase()
+      let toLowerCaseStr = doubleQuoteString.toLowerCase();
+
+      // toUpperCase()
+      let toUpperCaseStr = doubleQuoteString.toUpperCase();
+
+      // indexOf()
+      let positionOfSubstring = doubleQuoteString.indexOf("double");
+
+      // slice()
+      let slicedString = singleQuoteString.slice(5, 11);
+
+      // replace()
+      let replacedStr = singleQuoteString.replace("This", "Here's");
+
+      // concat()
+      let firstName = "Vinsmoke";
+      let lastName = "Sanji";
+      let fullName = firstName.concat(" ", lastName);
+
+      // Using + operator
+      let fullName2 = firstName + " " + lastName;
+
+      //Template Literals with Embedded Values
+
+      let name = "Monkey D. Luffy";
+      let profession = "Pirate King";
+      let greeting = `Hello, ${name}, you are ${profession}`;
+
+      //Render All Output to Page
+
+      outputDiv.innerText = `
+  Length: ${strLength}
+  First Character: ${firstChar}
+  Lowercase: ${toLowerCaseStr}
+  Uppercase: ${toUpperCaseStr}
+  Index of 'double': ${positionOfSubstring}
+  Sliced String: ${slicedString}
+  Replaced String: ${replacedStr}
+  Full Name (concat): ${fullName}
+  Full Name (+): ${fullName2}
+  Greeting: ${greeting}
+  Template Literal: ${templateLiteralString}
+    `;
+    </script>
+  </body>
+</html>

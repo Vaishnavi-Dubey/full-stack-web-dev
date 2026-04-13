@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Product Query Example</title>
+    <style>
+      .product-card {
+        border: 1px solid #aaa;
+        padding: 10px;
+        margin: 10px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Product List</h1>
+
+    <!-- Product Cards -->
+    <div class="product-card" data-category="mobile" data-rating="4.3">
+      <h2>iPhone 13</h2>
+      <p>Category: Mobile</p>
+      <p>Rating: 4.3</p>
+    </div>
+
+    <div class="product-card" data-category="laptop" data-rating="4.6">
+      <h2>Dell XPS 13</h2>
+      <p>Category: Laptop</p>
+      <p>Rating: 4.6</p>
+    </div>
+
+    <div class="product-card" data-category="laptop" data-rating="4.8">
+      <h2>MacBook Pro</h2>
+      <p>Category: Laptop</p>
+      <p>Rating: 4.8</p>
+    </div>
+
+    <script>
+      // Get the first product card (selects the first element with class 'product-card')
+      const firstProductCardEl = document.querySelector(".product-card");
+      console.log("First product card:", firstProductCardEl);
+
+      // Get the highest-rated product (data-rating="4.8")
+      const highestRatingEl = document.querySelector("[data-rating='4.8']");
+      console.log("Highest rated product:", highestRatingEl);
+
+      // Get the first laptop category product (data-category="laptop")
+      const laptopEl = document.querySelector("[data-category='laptop']");
+      console.log("First laptop product:", laptopEl);
+    </script>
+  </body>
+</html>

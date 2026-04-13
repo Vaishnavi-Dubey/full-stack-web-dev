@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript ES6 – Arrow Functions</title>
+
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: #f4f7fc;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h1 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+      }
+
+      pre {
+        background: #1e1e1e;
+        color: #00ff88;
+        padding: 20px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 700px;
+        overflow-x: auto;
+      }
+
+      #log {
+        background: #ecf0f1;
+        color: #2c3e50;
+        padding: 15px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 700px;
+        text-align: center;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>⚡ JavaScript ES6 – Arrow Functions</h1>
+    <p>Open the console to follow the outputs for each syntax demonstration.</p>
+
+    <pre>
+//Traditional function (ES5)
+function multiply(a, b) {
+  return a * b;
+}
+
+//Arrow function (ES6)
+const multiply = (a, b) => a * b;
+    </pre>
+
+    <div id="log">Check console for output logs</div>
+
+    <script>
+      console.log(" --- ARROW FUNCTIONS DEMO START ---");
+
+      // BASIC FUNCTION (ES5 vs ES6)
+
+      function multiplyOld(a, b) {
+        return a * b;
+      }
+      console.log("ES5 Multiply:", multiplyOld(2, 3));
+
+      // Arrow function version (shorter syntax)
+      const multiply = (a, b) => a * b;
+      console.log("ES6 Arrow Multiply:", multiply(2, 3));
+
+      // BLOCK BODY ARROW FUNCTION (with return)
+
+      const greet = (name) => {
+        return `Hello, ${name}!`;
+      };
+      console.log(greet("Emmanuel"));
+
+      //Simplified version — single-line implicit return
+      const greetSimple = (name) => `Hello, ${name}!`;
+      console.log(greetSimple("Sophia"));
+
+      // SINGLE PARAMETER (no parentheses)
+
+      const square = (x) => x * x;
+      console.log("Square of 5:", square(5));
+
+      // NO PARAMETERS (must include empty parentheses)
+
+      const random = () => Math.random();
+      console.log("Random Number:", random());
+
+      // RETURNING OBJECTS (wrapped in parentheses)
+
+      const getUser = () => ({
+        name: "MySyntax",
+        age: 10,
+      });
+      console.log("User Object:", getUser());
+
+      // DIFFERENCE BETWEEN ARROW & REGULAR FUNCTION (this)
+
+      const person = {
+        name: "Alice",
+        traditionalFunc: function () {
+          console.log("Traditional:", this.name);
+        },
+        arrowFunc: () => {
+          console.log("Arrow:", this.name);
+        },
+      };
+
+      console.log(" Person Object Context:");
+      person.traditionalFunc(); // Works, prints "Alice"
+      person.arrowFunc(); // Undefined, arrow function doesn't bind its own 'this'
+
+      // NOTES: ARROW FUNCTION CHARACTERISTICS
+
+      console.log(`
+ Key Notes:
+- Arrow functions are concise function expressions introduced in ES6.
+- They do not bind their own 'this', 'arguments', 'super', or 'new.target'.
+- They are NOT hoisted — define before using.
+- Cannot be used as constructors with 'new'.
+- Ideal for callbacks and simple expressions.
+      `);
+
+      //LOG TO PAGE
+
+      document.getElementById("log").innerHTML = `
+         Multiply(2,3): ${multiply(2, 3)}<br>
+         Greet('Sophia'): ${greetSimple("Sophia")}<br>
+         Square(5): ${square(5)}<br>
+         Random: ${random().toFixed(4)}<br>
+         User: ${JSON.stringify(getUser())}
+      `;
+
+      console.log(" --- ARROW FUNCTIONS DEMO END ---");
+    </script>
+  </body>
+</html>
