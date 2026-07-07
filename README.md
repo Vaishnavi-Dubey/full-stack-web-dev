@@ -65,6 +65,17 @@ full-stack-web-dev/
 | **Data Modeling** | `06-Database-MongoDB-SQL/mongoose_schema.js` | ✅ |
 | **Secure Auth** | `07-Authentication-Auth/jwt_auth.js` | ✅ |
 
+## 📸 Screenshots
+
+### Smart Loan Calculator
+![Smart Loan Calculator](docs/images/loan_calc.png)
+
+### Profile Card Generator
+![Profile Card Generator](docs/images/profile_gen.png)
+
+### Task Manager
+![Task Manager](docs/images/task_manager.png)
+
 ---
 
 ## ⚙️ Installation & Setup
